@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  tfg_flask:
+    image: tfg_flask
+    depends_on:
+      - redis
+      - tfg_mariadb
+      - tfg_node
+    ports:
+      - "8000:5000" 
+
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"
+
+  tfg_node:
+    image: tfg_node
+    depends_on:
+      - tfg_mariadb
+    ports:
+      - "3001:3001"  
+
+  tfg_mariadb:
+    image: tfg_mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: BD-TFG
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+
+volumes:
+  db_data:
+
