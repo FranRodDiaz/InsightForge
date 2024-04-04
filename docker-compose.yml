@@ -2,7 +2,7 @@ version: '3'
 
 services:
   tfg_flask:
-    image: tfg_flask
+    image: fran1456/tfg_flask
     depends_on:
       - redis
       - tfg_mariadb
@@ -16,14 +16,14 @@ services:
       - "6379:6379"
 
   tfg_node:
-    image: tfg_node
+    image: fran1456/tfg_node
     depends_on:
       - tfg_mariadb
     ports:
       - "3001:3001"  
 
   tfg_mariadb:
-    image: tfg_mariadb
+    image: fran1456/tfg_mariadb
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: BD-TFG
