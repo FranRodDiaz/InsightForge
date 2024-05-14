@@ -768,7 +768,7 @@ def generateAnalisisError(ruta, idProject):
 
 def procesarTexto(texto, valoresColumnas):
     client = OpenAI(
-        api_key="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"
+        api_key=""
     )
 
     columnas_str = ", ".join(valoresColumnas)
