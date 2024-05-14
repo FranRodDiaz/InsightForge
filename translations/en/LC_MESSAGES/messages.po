@@ -1,0 +1,1216 @@
+# English translations for PROJECT.
+# Copyright (C) 2024 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2024-04-15 10:29+0200\n"
+"PO-Revision-Date: 2024-03-15 12:12+0100\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.13.0\n"
+
+#: templates/crearProyecto.html:7 templates/crearProyecto.html:67
+#: templates/crearProyecto.html:69 templates/index.html:68
+#: templates/index.html:70 templates/misProyectos.html:159
+#: templates/misProyectos.html:161 templates/resultados.html:63
+#: templates/resultados.html:65
+msgid "Crear Proyecto"
+msgstr "Create Project"
+
+#: templates/crearProyecto.html:60 templates/index.html:7
+#: templates/index.html:61 templates/misProyectos.html:152
+#: templates/resultados.html:56
+msgid "Home"
+msgstr "Home"
+
+#: templates/crearProyecto.html:62 templates/crearProyecto.html:64
+#: templates/index.html:63 templates/index.html:65
+#: templates/misProyectos.html:7 templates/misProyectos.html:154
+#: templates/misProyectos.html:156 templates/resultados.html:58
+#: templates/resultados.html:60
+msgid "Mis Proyectos"
+msgstr "My Projects"
+
+#: templates/crearProyecto.html:71 templates/index.html:72
+#: templates/misProyectos.html:163 templates/resultados.html:7
+#: templates/resultados.html:67
+msgid "Resultados"
+msgstr "Results"
+
+#: templates/crearProyecto.html:115
+msgid "Debe seleccionar alguna variable de control."
+msgstr "You must select a control variable."
+
+#: templates/crearProyecto.html:124
+msgid "Debe seleccionar una columna clase."
+msgstr "You must select a class column."
+
+#: templates/crearProyecto.html:133
+msgid "Debes introducir un nombre para el proyecto."
+msgstr "You must enter a name for the project."
+
+#: templates/crearProyecto.html:142
+msgid "Debe seleccionar el tipo de problema."
+msgstr "You must select the type of problem."
+
+#: templates/crearProyecto.html:151
+msgid "Ya has seleccionado la variable como clase."
+msgstr "You have already selected the variable as a class."
+
+#: templates/crearProyecto.html:161
+msgid "Ya has seleccionado la variable como externa."
+msgstr "You have already selected the variable as external."
+
+#: templates/crearProyecto.html:170
+msgid "Ya has seleccionado la variable como control."
+msgstr "You have already selected the variable as a control."
+
+#: templates/crearProyecto.html:179
+msgid "Ya tienes un proyecto con este nombre, introduce otro nombre."
+msgstr "You already have a project with this name, enter another name."
+
+#: templates/crearProyecto.html:189
+msgid "Debes seleccionar una clase positiva."
+msgstr "You must select a positive class."
+
+#: templates/crearProyecto.html:197
+msgid "La frase dicha no contiene información relevante."
+msgstr "The said sentence does not contain relevant information."
+
+#: templates/crearProyecto.html:206
+#, fuzzy
+msgid "Debes de cargar primero un conjunto de datos."
+msgstr "Figure 4: Loading data set"
+
+#: templates/crearProyecto.html:215
+msgid "El tamaño del archivo supera el máximo, el cual es de 25 MB."
+msgstr "The file size exceeds the maximum file size, which is 25 MB."
+
+#: templates/crearProyecto.html:224
+msgid ""
+"La extensión del archivo es incorrecta, solamente se admiten archivos "
+".csv."
+msgstr "The file extension is incorrect, only .csv files are supported."
+
+#: templates/crearProyecto.html:238
+msgid "Nombre del proyecto"
+msgstr "Project name"
+
+#: templates/crearProyecto.html:241 templates/misProyectos.html:207
+msgid "Escuchando..."
+msgstr "Listening..."
+
+#: templates/crearProyecto.html:276
+msgid "Introduzca los archivos a seleccionar"
+msgstr "Enter the files to be selected"
+
+#: templates/crearProyecto.html:282
+msgid "Datasets:"
+msgstr "Datasets:"
+
+#: templates/crearProyecto.html:305
+msgid "Ningún archivo seleccionado"
+msgstr "No file selected"
+
+#: templates/crearProyecto.html:310
+msgid "Seleccione su archivo"
+msgstr "Select your file"
+
+#: templates/crearProyecto.html:318
+msgid "Variables y Validación"
+msgstr "Variables and Validation"
+
+#: templates/crearProyecto.html:323
+msgid "Variables control"
+msgstr "Control variables"
+
+#: templates/crearProyecto.html:326 templates/crearProyecto.html:328
+#: templates/crearProyecto.html:467 templates/crearProyecto.html:469
+msgid "seleccionadas"
+msgstr "selected"
+
+#: templates/crearProyecto.html:369 templates/resultados.html:159
+#: templates/resultados.html:171 templates/resultados.html:183
+#: templates/resultados.html:193
+msgid "Validación"
+msgstr "Validation"
+
+#: templates/crearProyecto.html:373
+msgid "Hold out"
+msgstr "Hold out"
+
+#: templates/crearProyecto.html:373
+msgid "training"
+msgstr "training"
+
+#: templates/crearProyecto.html:375 templates/crearProyecto.html:404
+#: templates/crearProyecto.html:435
+msgid "Cross Validation"
+msgstr "Cross Validation"
+
+#: templates/crearProyecto.html:375 templates/crearProyecto.html:421
+#: templates/crearProyecto.html:452
+msgid "Folds"
+msgstr "Folds"
+
+#: templates/crearProyecto.html:387
+msgid "Validaciones"
+msgstr "Validations"
+
+#: templates/crearProyecto.html:400 templates/crearProyecto.html:431
+msgid "Hold-out"
+msgstr "Hold-out"
+
+#: templates/crearProyecto.html:464 templates/crearProyecto.html:480
+msgid "Variables externas"
+msgstr "External variables"
+
+#: templates/crearProyecto.html:516
+msgid "Columna Clase (Objetivo)"
+msgstr "Column Class (Objective)"
+
+#: templates/crearProyecto.html:521 templates/resultados.html:134
+msgid "Tipo problema:"
+msgstr "Type of problem:"
+
+#: templates/crearProyecto.html:536
+msgid "Regresión"
+msgstr "Regression"
+
+#: templates/crearProyecto.html:537
+msgid "Clasificación"
+msgstr "Classification"
+
+#: templates/crearProyecto.html:545 templates/resultados.html:139
+msgid "Clase positiva:"
+msgstr "Positive class:"
+
+#: templates/crearProyecto.html:588 templates/tutorial.html:195
+msgid "Algoritmos"
+msgstr "Algorithms"
+
+#: templates/crearProyecto.html:589
+msgid "Necesita seleccionar el tipo del problema, para seleccionar el modelo"
+msgstr "You need to select the type of the problem, to select the model"
+
+#: templates/crearProyecto.html:604
+msgid "Random Forest"
+msgstr "Random Forest"
+
+#: templates/crearProyecto.html:628
+msgid "Redes Neuronales"
+msgstr "Neural Networks"
+
+#: templates/crearProyecto.html:656
+msgid "Regresión Lineal"
+msgstr "Linear Regression"
+
+#: templates/crearProyecto.html:668
+msgid "Regresión Logística"
+msgstr "Logistic Regression"
+
+#: templates/crearProyecto.html:694
+msgid "Actualizar"
+msgstr "Update"
+
+#: templates/crearProyecto.html:706
+msgid "Crear"
+msgstr "Create"
+
+#: templates/index.html:38
+msgid "El usuario no existe."
+msgstr "The user does not exist."
+
+#: templates/index.html:114
+msgid ""
+"Bienvenido a <strong>InsightForge</strong>, la Herramienta Innovadora "
+"para la Creación y Análisis de Proyectos de Modelado de Datos."
+msgstr ""
+"Welcome to <strong>InsightForge</strong>, the Innovative Tool  for the "
+"Creation and Analysis of Data Modeling Projects."
+
+#: templates/index.html:132 templates/index.html:236
+msgid "Características"
+msgstr "Features"
+
+#: templates/index.html:139
+msgid "Modelado de Datos"
+msgstr "Data Modeling"
+
+#: templates/index.html:141
+msgid ""
+"Modelado de datos con una plataforma intuitiva que permite la "
+"configuración y ejecución de proyectos de datos personalizados.\n"
+"                                    Especializada en la integración de "
+"datasets y en la simplificación del proceso de aprendizaje automático "
+"para usuarios de todos los niveles."
+msgstr ""
+"Data modeling with an intuitive platform that allows the  configuration "
+"and execution of customized data projects.Specialized in the integration "
+"of Specializing in dataset integration and simplifying the machine "
+"learning process  for users of all levels."
+
+#: templates/index.html:151
+msgid "Visualización Analítica"
+msgstr "Analytical Visualization"
+
+#: templates/index.html:153
+msgid ""
+"Diseño de interfaces para la visualización analítica, facilitando la "
+"interpretación de modelos complejos a través de gráficos de "
+"explicabilidad como ICE plots y Dependence plots.\n"
+"                                    Comprometidos con la transparencia y "
+"la comprensión profunda de los resultados del modelo."
+msgstr ""
+"Design of interfaces for analytical visualization, facilitating the  "
+"interpretation of complex models through  explainability plots such as "
+"ICE plots and Dependence plots.Committed to transparency and  deep "
+"understanding of model results."
+
+#: templates/index.html:163
+msgid "Información Predictiva"
+msgstr "Predictive Information"
+
+#: templates/index.html:165
+msgid ""
+"Extracción de conocimientos predictivos utilizando tecnología de punta en"
+" análisis de datos.\n"
+"                                                    Ofrecemos métricas "
+"detalladas del rendimiento del entrenamiento del modelo,\n"
+"                                                    permitiendo a los "
+"usuarios tomar decisiones informadas basadas en datos."
+msgstr ""
+"Extraction of predictive insights using state-of-the-art technology in  "
+"data analytics.We provide detailed metrics of model training performance,"
+" detailed metrics of model training performance enabling  users to make "
+"informed data-driven decisions."
+
+#: templates/index.html:179 templates/index.html:236
+msgid "Contacto"
+msgstr "Contact"
+
+#: templates/index.html:181
+msgid ""
+"En caso de que quiera reportar un bug o recomendar alguna mejora por "
+"favor rellene el siguiente formulario."
+msgstr ""
+"In case you would like to report a bug or recommend an improvement by "
+"please fill out the form below."
+
+#: templates/index.html:187
+msgid "El usuario no existe"
+msgstr "The user does not exist"
+
+#: templates/index.html:191
+msgid "Usuario"
+msgstr "User"
+
+#: templates/index.html:196
+msgid "Bug o recomendación"
+msgstr "Bug or recommendation"
+
+#: templates/index.html:200
+msgid "Enviar"
+msgstr "Send"
+
+#: templates/index.html:213
+msgid "Descripción de la Plataforma InsightForge"
+msgstr "InsightForge Platform Description"
+
+#: templates/index.html:215
+msgid ""
+"Explora las fronteras del análisis de datos con InsightForge. Nuestra "
+"plataforma se especializa en transformar conjuntos de datos complejos en "
+"modelos de aprendizaje automático accesibles y\n"
+"                        comprensibles. Con InsightForge, la creación de "
+"proyectos es tan sencilla como innovadora, ofreciendo a los usuarios la "
+"capacidad de configurar, ejecutar y analizar con total control y "
+"flexibilidad."
+msgstr ""
+"Explore the frontiers of data analytics with InsightForge. Our platform "
+"specializes in transforming complex data sets into accessible and "
+"understandable understandable models. With InsightForge, building "
+"projects is as simple as it is innovative, giving users the ability to "
+"configure, run and analyze with full control and flexibility."
+
+#: templates/index.html:219
+msgid ""
+"Desde visualizaciones interactivas hasta métricas predictivas, "
+"InsightForge está diseñada para empoderar tanto a científicos de datos "
+"como a analistas de negocios. Sumérgete en la riqueza de tus datos con "
+"gráficos de explicabilidad avanzados como ICE y\n"
+"                        Dependence plots, y descubre insights que "
+"impulsarán tus decisiones estratégicas hacia adelante."
+msgstr ""
+"From interactive visualizations to predictive metrics, InsightForge is "
+"designed to empower both data scientists as well as business analysts. "
+"Immerse yourself in the richness of your data with advanced "
+"explainability plots such as ICE and Dependence plots, and discover "
+"insights that will drive your strategic decisions forward."
+
+#: templates/index.html:236
+msgid "Descripción"
+msgstr "Description"
+
+#: templates/login.html:7 templates/login.html:54 templates/login.html:89
+msgid "Iniciar sesión"
+msgstr "Login"
+
+#: templates/login.html:34
+msgid "El usuario o la contraseña son incorrectos."
+msgstr "The user or password is incorrect."
+
+#: templates/login.html:46
+msgid "InsightForge"
+msgstr "InsightForge"
+
+#: templates/login.html:90 templates/recuperarContrasenia.html:91
+#: templates/signup.html:147
+msgid "Cancelar"
+msgstr "Cancel"
+
+#: templates/login.html:92
+msgid "¿No tienes cuenta?"
+msgstr "Don't have an account?"
+
+#: templates/login.html:92 templates/login.html:93
+msgid "Haz click aquí"
+msgstr "Click here"
+
+#: templates/login.html:93
+msgid "¿Se te ha olvidado la contraseña?"
+msgstr "Forgot your password?"
+
+#: templates/misProyectos.html:34
+msgid "Error en los datos"
+msgstr "Data error"
+
+#: templates/misProyectos.html:39
+msgid "Los datos del proyecto no están completos. ¿Desea completarlos?"
+msgstr "The project data is not complete, would you like to complete it?"
+
+#: templates/misProyectos.html:41 templates/misProyectos.html:63
+msgid "NO"
+msgstr "NO"
+
+#: templates/misProyectos.html:44 templates/misProyectos.html:66
+msgid "SÍ"
+msgstr "YES"
+
+#: templates/misProyectos.html:56
+#, fuzzy
+msgid "Eliminar todos los proyectos"
+msgstr "My projects"
+
+#: templates/misProyectos.html:61
+msgid "¿Desea eliminar todos los proyectos?"
+msgstr "Do you want to delete all projects?"
+
+#: templates/misProyectos.html:98
+msgid ""
+"Ha ocurrido un error durante la ejecución de un proyecto. Inténtelo más "
+"tarde o envíe una consulta al administrador."
+msgstr ""
+"An error occurred during the execution of a project. Please try again "
+"later or send a query to the administrator."
+
+#: templates/misProyectos.html:106
+msgid "La acción escogida no es valida."
+msgstr "The chosen action is not valid."
+
+#: templates/misProyectos.html:114
+msgid "Comando no válido, consultar el manual de usuario."
+msgstr "Invalid command, consult the user's manual."
+
+#: templates/misProyectos.html:122
+msgid "El identificador es incorrecto."
+msgstr "The identifier is incorrect."
+
+#: templates/misProyectos.html:130
+msgid ""
+"El identificador del proyecto no es correcto, por favor no lo modifique a"
+" través de la herramienta inspeccionar del navegador."
+msgstr ""
+"The project identifier is not correct, please do not modify it through "
+"the browser's inspect tool."
+
+#: templates/misProyectos.html:205
+msgid "Mis proyectos"
+msgstr "My projects"
+
+#: templates/misProyectos.html:229
+msgid "ID"
+msgstr "ID"
+
+#: templates/misProyectos.html:230
+msgid "Nombre"
+msgstr "Name"
+
+#: templates/misProyectos.html:231
+msgid "Fecha"
+msgstr "Date"
+
+#: templates/misProyectos.html:232
+msgid "Estado"
+msgstr "Status"
+
+#: templates/misProyectos.html:246
+msgid "Progreso proyecto"
+msgstr "Project progress"
+
+#: templates/nuevaContrasenia.html:7 templates/nuevaContrasenia.html:76
+msgid "Nueva Contraseña"
+msgstr "New Password"
+
+#: templates/nuevaContrasenia.html:47
+msgid "La contraseña no coincide en los dos campos."
+msgstr "The password does not match in both fields."
+
+#: templates/nuevaContrasenia.html:56
+msgid "Se requiere la nueva contraseña"
+msgstr "New password required"
+
+#: templates/nuevaContrasenia.html:65
+msgid "Se requiere que se repita la contraseña"
+msgstr "Password repetition is required"
+
+#: templates/nuevaContrasenia.html:127
+msgid "Confirmar contraseña"
+msgstr "Confirm password"
+
+#: templates/recuperarContrasenia.html:7
+msgid "Recuperar contraseña"
+msgstr "Password recovery"
+
+#: templates/recuperarContrasenia.html:41
+msgid "El usuario introducido no existe."
+msgstr "The user entered does not exist."
+
+#: templates/recuperarContrasenia.html:50 templates/signup.html:61
+msgid "El nombre de usuario es necesario."
+msgstr "The user name is required."
+
+#: templates/recuperarContrasenia.html:61
+msgid "Recuperar Contraseña"
+msgstr "Recover Password"
+
+#: templates/recuperarContrasenia.html:90
+msgid "Enviar Correo"
+msgstr "Send Mail"
+
+#: templates/resultados.html:110
+msgid "Información del proyecto"
+msgstr "Project information"
+
+#: templates/resultados.html:117
+msgid "Nombre proyecto:"
+msgstr "Project name:"
+
+#: templates/resultados.html:122
+msgid "Fecha:"
+msgstr "Date:"
+
+#: templates/resultados.html:127
+msgid "Columna clase:"
+msgstr "Class column:"
+
+#: templates/resultados.html:144
+msgid "Tipo validación:"
+msgstr "Validation type:"
+
+#: templates/resultados.html:153
+msgid "Gráficas y predicciones"
+msgstr "Graphs and predictions"
+
+#: templates/resultados.html:165 templates/resultados.html:176
+#: templates/resultados.html:189 templates/resultados.html:198
+msgid "Árbol de Decisión I"
+msgstr "Decision Tree I"
+
+#: templates/resultados.html:166 templates/resultados.html:177
+#: templates/resultados.html:190 templates/resultados.html:199
+msgid "Árbol de Decisión II"
+msgstr "Decision Tree II"
+
+#: templates/resultados.html:169 templates/resultados.html:181
+#: templates/resultados.html:191 templates/resultados.html:201
+msgid "Análisis error"
+msgstr "Error analysis"
+
+#: templates/resultados.html:178 templates/resultados.html:200
+msgid "Nomograma"
+msgstr "Nomogram"
+
+#: templates/resultados.html:226
+msgid ""
+"Si observa que el valor del MAPE es demasiado alto, no se preocupe "
+"seguramente los valores utilizados para calcular dicha métricas son\n"
+"                muy pequeños, es decir, menores que 1 acercándose al 0."
+msgstr ""
+"If you notice that the MAPE value is too high, don't worry surely the "
+"values used to calculate such metrics are very small, i.e. less than 1 "
+"approaching 0."
+
+#: templates/resultados.html:229
+msgid "Descargar predicciones y métricas."
+msgstr "Download predictions and metrics."
+
+#: templates/resultados.html:271 templates/resultados.html:289
+msgid ""
+"Se ha generado un modelo de árbol para poder generar está gráfica. Esto "
+"se debe a que el algoritmo seleccionado no puede generar dicha gráfica"
+msgstr ""
+"A tree model has been generated in order to generate this graph. This is "
+"due to the fact that the selected algorithm cannot generate such a graph."
+
+#: templates/resultados.html:308 templates/resultados.html:317
+#: templates/resultados.html:349 templates/resultados.html:358
+msgid "Descargar Imagen"
+msgstr "Download Image"
+
+#: templates/resultados.html:376 templates/resultados.html:386
+#: templates/resultados.html:411
+msgid "El texto ha sido generado con GPT"
+msgstr "The text has been generated with GPT"
+
+#: templates/signup.html:7
+msgid "Registro"
+msgstr "Registration"
+
+#: templates/signup.html:52
+msgid ""
+"No podemos procesar tu solicitud con ese nombre de usuario. Por favor, "
+"elige uno diferente o intenta de nuevo más tarde."
+msgstr ""
+"We cannot process your request with that username. Please choose a "
+"different one or try again later."
+
+#: templates/signup.html:70
+msgid "La contraseña es necesaria."
+msgstr "The password is required."
+
+#: templates/signup.html:79
+msgid "El email es necesario."
+msgstr "Email is required."
+
+#: templates/signup.html:90 templates/signup.html:146
+msgid "Registrarse"
+msgstr "Register"
+
+#: templates/tutorial.html:23
+msgid "A continuación, se muestra un tutorial de como crear un proyecto desde 0."
+msgstr "Below is a tutorial on how to create a project from scratch."
+
+#: templates/tutorial.html:25
+msgid "Por favor, pase a la siguiente página."
+msgstr "Please turn to the next page."
+
+#: templates/tutorial.html:28
+msgid "Siguiente página"
+msgstr "Next page"
+
+#: templates/tutorial.html:39
+msgid "Selección Dataset I"
+msgstr "Dataset selection I"
+
+#: templates/tutorial.html:43
+#, fuzzy
+msgid ""
+"Lo primero que tenemos que hacer para crear un proyecto es presionar el "
+"botón \"Seleccione su archivo\", tal y como se muestra en la imagen 1. El"
+" tipo de archivo que se acepta es el .csv."
+msgstr "The first thing we have to do to create a project is to press the \"Select your file\" button, as shown in image 1. The file type accepted is .csv."
+
+
+#: templates/tutorial.html:48
+msgid "Imagen 1: Botón de selección"
+msgstr "Image 1: Selection button"
+
+#: templates/tutorial.html:51
+#, fuzzy
+msgid ""
+"Una vez se ha presionado el botón, lo siguiente es seleccionar el archivo"
+" a cargar. Es importante que el nombre de las columnas no contengan "
+"ninguna coma."
+msgstr "Once the button has been pressed, the next step is to select the file to be uploaded. It is important that the column names do not contain commas."
+
+
+#: templates/tutorial.html:56
+msgid "Imagen 2: Selección conjunto de datos"
+msgstr "Figure 2: Data set selection"
+
+#: templates/tutorial.html:58
+msgid ""
+"Por último, se nos actualizará la vista habilitando todos los campos que "
+"antes estaban desactivados."
+msgstr ""
+"Finally, the view will be updated by enabling all the fields that were "
+"previously disabled."
+
+#: templates/tutorial.html:63
+msgid "Imagen 3: Vista actualizada"
+msgstr "Image 3: Updated view"
+
+#: templates/tutorial.html:68 templates/tutorial.html:99
+#: templates/tutorial.html:142 templates/tutorial.html:184
+#: templates/tutorial.html:219 templates/tutorial.html:254
+#: templates/tutorial.html:287 templates/tutorial.html:321
+msgid "Página anterior"
+msgstr "Previous page"
+
+#: templates/tutorial.html:69 templates/tutorial.html:100
+#: templates/tutorial.html:143 templates/tutorial.html:185
+#: templates/tutorial.html:220 templates/tutorial.html:255
+#: templates/tutorial.html:288
+msgid "Página siguiente"
+msgstr "Next page"
+
+#: templates/tutorial.html:79
+msgid "Selección Dataset II"
+msgstr "Dataset selection II"
+
+#: templates/tutorial.html:83
+msgid ""
+"Además, también se puede cargar un conjunto de datos desde el elemento "
+"que se indica en la imagen 4."
+msgstr ""
+"In addition, it is also possible to load a data set from the element, "
+"which is indicated in image 4."
+
+#: templates/tutorial.html:88
+msgid "Imagen 4: Carga conjunto de datos"
+msgstr "Figure 4: Loading data set"
+
+#: templates/tutorial.html:90
+msgid ""
+"Si pulsamos en el elemento, nos aparecerán los conjuntos de datos que se "
+"han cargado con anterioridad."
+msgstr ""
+"If we click on the element, we will see the datasets that have been "
+"loaded previously."
+
+#: templates/tutorial.html:95
+msgid "Imagen 5: Conjuntos disponibles"
+msgstr "Figure 5: Sets available"
+
+#: templates/tutorial.html:111
+msgid "Nombre del Proyecto"
+msgstr "Project Name"
+
+#: templates/tutorial.html:115
+msgid ""
+"Cuando hemos seleccionado el conjunto de datos con el que vamos a "
+"trabajar, lo siguiente que haríamos sería introducir el nombre del "
+"proyecto."
+msgstr ""
+"When we have selected the data set with which we are going to work with, "
+"the next thing we would do would be to enter the name of the project."
+
+#: templates/tutorial.html:118
+msgid ""
+"Si nos fijamos en el apartado que pone \"Nombre del proyecto\" podremos "
+"ver un campo de texto y 2 iconos. En el campo de texto es donde deberemos"
+" introducir el nombre del proyecto."
+msgstr ""
+"If we look at the section that says \"Name of the project\" we will be "
+"able to we will see a text field and 2 icons. In the text field is where "
+"we will have to enter the name of the project."
+
+#: templates/tutorial.html:123
+msgid "Imagen 6: Campo de texto para introducir el nombre del proyecto"
+msgstr "Figure 6: Text field for entering project name"
+
+#: templates/tutorial.html:125
+msgid ""
+" El icono del micrófono sirve para activar un reconocimiento de voz que a"
+" partir de una determinada frase que contendrá las características del "
+"proyecto, se rellenarán los campos automáticamente con los datos dichos."
+"\n"
+"            Si observa que al activarlo no sé rellena nada, es que o no "
+"le ha entendido o ha dicho una frase distinta a la determinada."
+msgstr ""
+" The microphone icon is used to activate a speech recognition system that"
+" will starting from a given sentence containing the characteristics of "
+"the project, the fields will be automatically filled in with the said "
+"data.If you notice that nothing is filled in when you activate it, it "
+"means that either you has understood you or you have said a different "
+"sentence than the one specified."
+
+#: templates/tutorial.html:131
+msgid "Imagen 7: Icono micrófono"
+msgstr "Image 7: Microphone icon"
+
+#: templates/tutorial.html:133
+msgid ""
+"El último icono sirve para abrir este tutorial que le ayudará a crear un "
+"proyecto."
+msgstr ""
+"The last icon is used to open this tutorial that will help you to create "
+"a project."
+
+#: templates/tutorial.html:138
+msgid "Imagen 8: Icono interrogación"
+msgstr "Image 8: Interrogation icon"
+
+#: templates/tutorial.html:153
+msgid "Columna Clase"
+msgstr "Column Class"
+
+#: templates/tutorial.html:157
+msgid ""
+"Abajo del apartado anterior, nos encontramos la sección donde "
+"seleccionaremos la columna objetivo, el tipo de problema y la clase "
+"positiva (en caso de que la tenga) de nuestro problema."
+msgstr ""
+"Below the previous section, we find the section where we will select the "
+"target column, the type of problem and the positive (if any) of our "
+"problem."
+
+#: templates/tutorial.html:160
+msgid ""
+"Primero tendremos que seleccionar la columna clase. Está se selecciona en"
+" el último elemento de la sección como se muestra en la imagen 9."
+msgstr ""
+"First we will have to select the class column. This is selected in the "
+"last element of the section as shown in image 9."
+
+#: templates/tutorial.html:165
+msgid "Imagen 9: Elemento para seleccionar la columna clase"
+msgstr "Figure 9: Element for selecting the class column"
+
+#: templates/tutorial.html:167
+msgid ""
+"Cuando seleccionemos la columna objetivo, se nos seleccionará "
+"automáticamente el tipo de problema en función del tipo de variable que "
+"se haya seleccionado como clase pero también se puede seleccionar a mano."
+"\n"
+"            Para seleccionar el tipo de problema le damos al primer "
+"elemento de la sección como muestra la imagen 10."
+msgstr ""
+"When we select the target column, we will automatically select the type "
+"of problem based on the type of variable that has been selected as the "
+"type but it can also be selected by hand. To select the type of problem, "
+"click on the first element of the section as shown in the image 10."
+
+#: templates/tutorial.html:173
+msgid "Imagen 10: Elemento para seleccionar el tipo de problema"
+msgstr "Figure 10: Element for selecting the type of problem"
+
+#: templates/tutorial.html:175
+msgid ""
+"Por último, podremos seleccionar una clase positiva en caso de que el "
+"problema sea de clasificación. Para seleccionarla nos tenemos que dirigir"
+" al segundo elemento de la sección como muestra la imagen 11."
+msgstr ""
+"Finally, we will be able to select a positive class in case the problem "
+"is a classification problem. To select it we have to go to the second "
+"element of the section as shown in image 11."
+
+#: templates/tutorial.html:180
+msgid "Imagen 11: Elemento para seleccionar la clase positiva"
+msgstr "Figure 11: Element for selecting the positive class"
+
+#: templates/tutorial.html:199
+msgid ""
+"En la sección \"Algoritmos\" podremos observar los diferentes algoritmos "
+"que la aplicación soporta. Una vez que cargamos el dataset está sección "
+"se ve como en la imagen 12."
+msgstr ""
+"In the section \"Algorithms\" we will be able to observe the different "
+"algorithms that the application supports. Once we load the dataset, this "
+"section section looks like in the image 12."
+
+#: templates/tutorial.html:204
+msgid "Imagen 12: Algoritmos que soporta la aplicación"
+msgstr "Figure 12: Algorithms supported by the application"
+
+#: templates/tutorial.html:206
+msgid ""
+"Cuando seleccionamos la columna clase, entonces podremos seleccionar el "
+"algoritmo. Además dichos algoritmos se filtran automáticamente en función"
+" del tipo de problema como se observa en las imágenes 13 y 14."
+msgstr ""
+"When we select the class column, then we will be able to select the "
+"algorithm. In addition, these algorithms are automatically filtered "
+"according to the type of problem as shown in images 13 and 14."
+
+#: templates/tutorial.html:211
+msgid "Imagen 13: Algoritmos para Clasificación"
+msgstr "Figure 13: Algorithms for Classification"
+
+#: templates/tutorial.html:215
+msgid "Imagen 14: Algoritmos para Regresión"
+msgstr "Figure 14: Algorithms for Regression"
+
+#: templates/tutorial.html:230
+msgid "Variables y Validación I"
+msgstr "Variables and Validation I"
+
+#: templates/tutorial.html:234
+msgid ""
+"Lo último que tendríamos que configurar para poder crear nuestro "
+"proyecto, es seleccionar el tipo de validación y las variables externas y"
+" de control que queremos. Un aspecto importante es que si ya hemos "
+"seleccionado una variable como control, no podremos seleccionar la misma "
+"como externa o columna clase.\n"
+"              Esto también pasa si seleccionamos una variable como "
+"externa o columna clase."
+msgstr ""
+"The last thing we would have to configure in order to create our project,"
+" is to select the type of validation and the external variables and "
+"control variables we want. An important aspect is that if we have already"
+" selected a variable as a control, we will not be able to select the same"
+" as external or column class.This also happens if we select a variable as"
+" an external or column class."
+
+#: templates/tutorial.html:238
+msgid ""
+"Para seleccionar las variables de control lo único que tenemos que hacer "
+"es pulsar el botón que se resalta en la imagen 15. Abajo del botón se "
+"muestra el número de variables que se ha seleccionado frente al número "
+"total de variables que se puede seleccionar."
+msgstr ""
+"To select the control variables all we have to do is click on the button "
+"highlighted in image 15. Below the button the number of variables that "
+"have been selected is shown versus the total number of variables that can"
+" be selected."
+
+#: templates/tutorial.html:243
+msgid "Imagen 15: Botón para seleccionar variables de control"
+msgstr "Figure 15: Button to select control variables"
+
+#: templates/tutorial.html:245
+msgid ""
+"Para seleccionar las variables externas pulsamos el botón que se resalta "
+"en la imagen 16. Al igual que antes, también se muestra la información "
+"del número de variables que hemos seleccionado frente al que podemos "
+"seleccionar."
+msgstr ""
+"To select the external variables, click on the button highlighted in "
+"image 16. As before, the information on the number of variables we have "
+"selected versus the number we can select is also displayed."
+
+#: templates/tutorial.html:250
+msgid "Imagen 16: Botón para seleccionar variables externas"
+msgstr "Figure 16: Button for selecting external variables"
+
+#: templates/tutorial.html:265
+msgid "Variables y Validación II"
+msgstr "Variables and Validation II"
+
+#: templates/tutorial.html:269
+msgid ""
+"Para seleccionar la validación lo único que tenemos que hacer es pulsar "
+"el botón que se resalta en la imagen 17. Abajo del botón se muestra la "
+"validación escogida."
+msgstr ""
+"To select the validation all we have to do is to click on button that is "
+"highlighted in image 17. Below the button the chosen validation chosen is"
+" shown below the button."
+
+#: templates/tutorial.html:274
+msgid "Imagen 17: Botón para seleccionar la validación"
+msgstr "Figure 17: Button to select validation"
+
+#: templates/tutorial.html:276
+msgid ""
+"Si le damos al botón, podremos ver los tipos de validación que podremos "
+"escoger. Podemos seleccionar entre una validación \"Hold-out\" y una "
+"validación \"Cross Validation\",\n"
+"              donde podremos seleccionar el porcentaje de train o el "
+"número bolsas respectivamente."
+msgstr ""
+"If we click on the button, we can see the types of validation that we can"
+" choose. We can select between a \"Hold-out\" validation and a \"Cross "
+"Validation\" validation, where we can select the percentage of train or "
+"the number of bags respectively."
+
+#: templates/tutorial.html:283
+msgid "Imagen 18: Tipos de validación disponibles"
+msgstr "Figure 18: Types of validation available"
+
+#: templates/tutorial.html:298
+msgid "Crear proyecto"
+msgstr "Create project"
+
+#: templates/tutorial.html:302
+msgid ""
+"Una vez ya hemos rellenado todas las secciones lo último que tenemos que "
+"hacer es pulsar sobre el botón \"Crear\"."
+msgstr ""
+"Once we have filled in all the sections the last thing we have to do is "
+"to click on the \"Create\" button."
+
+#: templates/tutorial.html:307
+msgid "Imagen 19: Botón para crear el proyecto"
+msgstr "Figure 19: Button to create the project"
+
+#: templates/tutorial.html:309
+msgid ""
+"Si no le damos al botón y nos vamos de la vista, no pasa nada porque el "
+"proyecto se creará igualmente."
+msgstr ""
+"If we do not click on the button and leave the view, nothing happens "
+"because the project will be created anyway."
+
+#: templates/tutorial.html:312
+msgid ""
+"Y cuando le hayamos dado al botón o nos hayamos ido de la vista, podemos "
+"ir a la pestaña \"Mis Proyectos\" donde podremos ver que se ha creado "
+"perfectamente el proyecto."
+msgstr ""
+"And when we have clicked the button or left the view, we can go to the "
+"tab \"My Projects\" where we can see that the project has been created "
+"perfectly."
+
+#: templates/tutorial.html:317
+msgid "Imagen 20: Proyecto creado"
+msgstr "Figure 20: Project created"
+
+#: templates/tutorial.html:322
+msgid "Fin"
+msgstr "End"
+
+#: templates/tutorialMisProyectos.html:19
+msgid "Guía de Mis Proyectos"
+msgstr "My Projects Guide"
+
+#: templates/tutorialMisProyectos.html:23
+msgid ""
+"A continuación, se muestra una guía que describe las acciones que se "
+"pueden realizar con un proyecto creado."
+msgstr ""
+"Below is a guide describing the actions that can be performed with a "
+"created project."
+
+#: templates/tutorialMisProyectos.html:28
+msgid "Acción \"View\""
+msgstr "Action \"View\""
+
+#: templates/tutorialMisProyectos.html:31
+msgid "Acción \"Start\""
+msgstr "Action \"Start\""
+
+#: templates/tutorialMisProyectos.html:37
+msgid "Acción \"Copy\""
+msgstr "Action \"Copy\""
+
+#: templates/tutorialMisProyectos.html:40
+msgid "Acción \"Download\""
+msgstr "Action \"Download\""
+
+#: templates/tutorialMisProyectos.html:45
+msgid ""
+"Además, de las acciones se muestran el nombre del proyecto, la fecha en "
+"la que el proyecto fue creado y el estado en que se encuentra. Entre los "
+"estados posibles tenemos:"
+msgstr ""
+"In addition to the actions, the name of the project, the date on which "
+"the project was created and its current status are displayed. Among the "
+"possible statuses we have: "
+
+#: templates/tutorialMisProyectos.html:47
+msgid ""
+"Not configured: El proyecto todavía no se ha terminado de configurar, por"
+" lo tanto, no se ejecutar. En este caso se muestra\n"
+"                  una ventana emergente que pregunta al usuario si quiere"
+" terminar de configurarlo."
+msgstr ""
+"Not configured: The project has not yet been configured, therefore it "
+"will not be executed. In this case a pop-up window is displayed asking "
+"the user if he/she wants to finish configuring it."
+
+#: templates/tutorialMisProyectos.html:49
+msgid ""
+"Not started: El proyecto todavía no se ha ejecutado. Las acciones "
+"posibles son \"Copy\" y \"Start\"."
+msgstr ""
+"Not started: The project has not yet been executed. The possible actions "
+"are \"Copy\" and \"Start\"."
+
+#: templates/tutorialMisProyectos.html:50
+msgid "Running: El proyecto está ejecutándose. La acción posible es \"Copy\"."
+msgstr "Running: The project is running. The possible action is \"Copy\"."
+
+#: templates/tutorialMisProyectos.html:51
+msgid ""
+"Done: El proyecto ya se ha ejecutado. Las acciones posibles son \"View\","
+" \"Copy\" y \"Download\"."
+msgstr ""
+"Done: The project has already been executed. The possible actions are "
+"\"View\", \"Copy\" and \"Download\"."
+
+#: templates/tutorialMisProyectos.html:53
+msgid ""
+"Además, de las acciones definidas arribas también está la acción borrar "
+"que elimina un proyecto seleccionado.\n"
+"              Si desea eliminar todos los proyectos deberá decir el "
+"comando de voz \"Eliminar (o borrar) todos los proyectos.\".\n"
+"              Finalmente, todas las acciones se pueden ejecutar mediante "
+"comandos de voz, por ejemplo si quisieramos visualizar un proyecto\n"
+"              tendríamos que decir \"Visualizar el proyecto 1\", y "
+"visualizariamos el proyecto con ID 1. La estructura de estos comandos es "
+"\"Acción\" el proyecto \"ID\"."
+msgstr "In addition to the actions defined above, there is also the delete action that deletes a selected project. If you want to delete all projects you should say the voice command \"Delete (or delete) all projects\". Finally, all actions can be executed by voice commands, for example if we want to visualize a project we would have to say \"Visualize project 1\", and we would visualize the project with ID 1. The structure of these commands is \"Action\" the project \"ID\"."
+
+#: templates/tutorialMisProyectos.html:67
+msgid "Acción View"
+msgstr "Action View"
+
+#: templates/tutorialMisProyectos.html:71
+msgid ""
+"Una vez que el proyecto este ejecutado podremos realizar la acción "
+"\"View\". Si le damos al botón este nos llevará a la pestaña de "
+"resultados dónde\n"
+"            aparecerán los resultados y gráficas de explicabilidad de "
+"nuestro proyecto."
+msgstr ""
+"Once the project is executed we can perform the action \"View\". If we "
+"click on the button it will take us to the results tab where the results "
+"and graphs of the explainability of our project will appear."
+
+#: templates/tutorialMisProyectos.html:78
+msgid "Imagen 1: Vista de resultados del proyecto"
+msgstr "Image 1: Project results view"
+
+#: templates/tutorialMisProyectos.html:82
+#: templates/tutorialMisProyectos.html:109
+#: templates/tutorialMisProyectos.html:128
+#: templates/tutorialMisProyectos.html:173
+msgid "Volver"
+msgstr "Back"
+
+#: templates/tutorialMisProyectos.html:93
+msgid "Acción Start"
+msgstr "Action Start"
+
+#: templates/tutorialMisProyectos.html:97
+msgid ""
+"Cuando pulsemos el botón \"Start\", empezará la ejecución del proyecto. "
+"Lo primero que vemos es que el status cambia de \"Not started\" a "
+"\"Running\". Además\n"
+"            se puede visualizar el progreso del proyecto si le damos al "
+"icono que se muestra en la imagen 1. En este icono aparecerán todos los "
+"proyectos que estemos ejecutando,\n"
+"            incluso si cerramos sesión o salimos del navegador."
+msgstr ""
+"When we press the \"Start\" button, the project execution will start. The"
+" first thing we see is that the status changes from \"Not started\" to "
+"\"Running\". In addition, we can visualize the progress of the project if"
+" we click on the icon shown in image 1. In this icon will appear all the "
+"projects we are running, even if we close session or exit the browser."
+
+#: templates/tutorialMisProyectos.html:104
+msgid "Imagen 1: Icono carga"
+msgstr "Image 1: Loading icon"
+
+#: templates/tutorialMisProyectos.html:120
+msgid "Acción Copy"
+msgstr "Action Copy"
+
+#: templates/tutorialMisProyectos.html:124
+msgid ""
+"Con está acción lo que podrás hacer es crear un proyecto nuevo con la "
+"misma configuración que el proyecto al que le has dado a \"Copy\". Esta "
+"acción\n"
+"            es muy útil si lo que quieres es cambiar una variable o el "
+"algoritmo del proyecto, y no quieres hacer el proyecto desde 0."
+msgstr ""
+"With this action what you will be able to do is to create a new project "
+"with the same configuration as the project that you have given to "
+"\"Copy\". This action is very useful if you want to change a variable or "
+"the algorithm of the project, and you don't want to make the project from"
+" 0."
+
+#: templates/tutorialMisProyectos.html:139
+msgid "Acción Download"
+msgstr "Action Download"
+
+#: templates/tutorialMisProyectos.html:143
+msgid ""
+"Por último, lo que hace está acción es descargarte un zip que contiene "
+"los siguientes elementos:"
+msgstr ""
+"Finally, what this action does is to download a zip file containing the "
+"following elements:"
+
+#: templates/tutorialMisProyectos.html:146
+msgid ""
+"Modelo: El modelo que se ha generado al ejecutar el proyecto. Es "
+"importante saber que el modelo es de H2O por lo que se guarda en formato "
+"MOJO.\n"
+"                  Para más información visitar la página de "
+msgstr ""
+"Model: The model that has been generated when executing the project. It "
+"is important to know that the model is H2O so it is saved in MOJO format."
+"  For more information visit the "
+
+#: templates/tutorialMisProyectos.html:147
+msgid "H2O"
+msgstr "H2O"
+
+#: templates/tutorialMisProyectos.html:149
+msgid ""
+"X-Model-Metrics-X-X.csv: Archivo csv que contiene las métricas del "
+"modelo. En caso de que el modelo sea de clasificación incluye:"
+msgstr ""
+"X-Model-Metrics-X-X.csv: csv file containing the model metrics. In case "
+"the model is a classification model it includes:"
+
+#: templates/tutorialMisProyectos.html:151
+msgid "Exactitud"
+msgstr "Accuracy"
+
+#: templates/tutorialMisProyectos.html:152
+msgid "Sensibilidad"
+msgstr "Sensitivity"
+
+#: templates/tutorialMisProyectos.html:153
+msgid "Precisión"
+msgstr "Precision"
+
+#: templates/tutorialMisProyectos.html:154
+msgid "Puntuación F1"
+msgstr "F1 Score"
+
+#: templates/tutorialMisProyectos.html:155
+msgid "Especificidad"
+msgstr "Specificity"
+
+#: templates/tutorialMisProyectos.html:156
+msgid "NPV"
+msgstr "NPV"
+
+#: templates/tutorialMisProyectos.html:158
+msgid "En caso de que el modelo sea de regresión incluye:"
+msgstr "In case the model is a regression model, it includes:"
+
+#: templates/tutorialMisProyectos.html:167
+msgid ""
+"X-Model-Predictions-X-X.csv: Archivo csv que contiene las columnas que se"
+" han seleccionado, más una columna adicional con la predicción realizada "
+"por el modelo."
+msgstr ""
+"X-Model-Predictions-X-X.csv: csv file containing the columns that have "
+"been selected, plus an additional column with the prediction made by the "
+"model."
+
+#: templates/tutorialMisProyectos.html:168
+msgid ""
+"Gráficas: Por último, también incluye todas las gráficas que se han "
+"generado para el problema. Hay que tener en cuenta que dependiendo del "
+"algoritmo y el tipo de problema se pueden generar unas gráficas u otras."
+msgstr ""
+"Graphs: Finally, it also includes all the graphs that have been generated"
+" for the problem. It should be noted that depending on the algorithm and "
+"the type of problem, some graphs may be generated or others."
+
