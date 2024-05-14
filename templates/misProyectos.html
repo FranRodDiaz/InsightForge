@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html data-bs-theme="light" lang="es-es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{{ gettext('Mis Proyectos') }}</title>
+    <link rel="icon" type="image/x-icon" href="./static/assets/img/icono.png">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../static/assets/js/jquery.twbsPagination.js" defer></script>
+    <script src="../static/assets/js/paginacion.js"></script>
+    <script src="../static/assets/js/loader.js"></script>
+    <script src="../static/assets/js/artyom.js"></script>
+    <script src="../static/assets/js/artyom.window.js"></script>
+    <script src="../static/assets/js/recognitionAudio.js"></script>
+    <script src="../static/assets/js/javascriptCabecera.js"></script>
+    <link rel="stylesheet" href="static/assets/bootstrap/css/bootstrapHome.min.css?h=cd822b7fd22c8a95a68470c795adea69">
+    <link rel="stylesheet" href="static/assets/css/misProyectos.css?h=3c0b206e0d24c0c015cdc6975c8ec5e1">
+    <link rel="stylesheet" href="static/assets/fonts/line-awesome.min.css?h=d98553506d4393860db8a633e4842ead">
+    <link rel="stylesheet" href="static/assets/css/select.css?h=a8f48a84b056f5db258f00389f001817">
+    <link rel="stylesheet" href="static/assets/css/styles.css?h=13d1606d53e127f94edece921d5dd45a">
+    <link rel="stylesheet" href="static/assets/css/cssCabecera.css">
+</head>
+
+<body>
+    <input type="hidden" id="idioma" value="{{ current_language }}" />
+    {% include 'tutorialMisProyectos.html' %}
+    <div class="modal fade" role="dialog" tabindex="-1" id="modalParaError" aria-labelledby="controlModal" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="w-100">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h4 class="modal-title" id="uploadModalLabel">{{ gettext('Error en los datos') }}</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-body overflow-auto errorDatos" style="max-height: 60vh;">
+                    <p>{{ gettext('Los datos del proyecto no están completos. ¿Desea completarlos?') }}</p>
+                    <button type="button" class="close btn btn-primary rounded-4" id="NoAceptaModificar" data-bs-dismiss="modal" aria-label="Close">
+                       <span aria-hidden="true">{{ gettext('NO') }}</span>
+                    </button>
+                    <button type="button" class="close btn btn-primary rounded-4" id="AceptaModificar" data-bs-dismiss="modal" aria-label="Close">
+                       <span aria-hidden="true">{{ gettext('SÍ') }}</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" role="dialog" tabindex="-1" id="modalParaEliminar" aria-labelledby="controlModal" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="w-100">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h4 class="modal-title" id="uploadModalLabel">{{ gettext('Eliminar todos los proyectos') }}</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-body overflow-auto errorDatos" style="max-height: 60vh;">
+                    <p>{{ gettext('¿Desea eliminar todos los proyectos?') }}</p>
+                    <button type="button" class="close btn btn-primary rounded-4" id="NoAceptaEliminar" data-bs-dismiss="modal" aria-label="Close">
+                       <span aria-hidden="true">{{ gettext('NO') }}</span>
+                    </button>
+                    <button type="button" class="close btn btn-primary rounded-4" id="AceptaEliminar" data-bs-dismiss="modal" aria-label="Close">
+                       <span aria-hidden="true">{{ gettext('SÍ') }}</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+ <script>
+        $(document).ready(function() {
+
+            var error1 = {{ errorIdentificador | default('') | tojson }};
+
+            if (error1 === true){
+                 const myToastErrorIdentificador = new bootstrap.Toast(document.querySelector("#mensajeErrorIdentificador2"));
+                myToastErrorIdentificador.show();
+            }
+
+            let historyData={{history | tojson}};
+
+            paginar(historyData, false, '{{username}}');
+
+            $('#search-input').on('keyup', function() {
+                searchTable();
+            });
+
+
+        });
+    </script>
+    <div aria-live="polite" aria-atomic="true" class="position-relative">
+        <div class="toast-container position-absolute top-0 start-0 p-3">
+                <div class="toast align-items-center text-white bg-danger border-0 custom-toast" role="alert" aria-live="assertive" aria-atomic="true" id="mensajeErrorProyecto">
+                    <div class="d-flex">
+                        <div class="toast-body">
+                            {{ gettext('Ha ocurrido un error durante la ejecución de un proyecto. Inténtelo más tarde o envíe una consulta al administrador.') }}
+                        </div>
+                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+            </div>
+             <div class="toast align-items-center text-white bg-danger border-0 custom-toast" role="alert" aria-live="assertive" aria-atomic="true" id="mensajeErrorAccionMicro">
+                    <div class="d-flex">
+                        <div class="toast-body">
+                            {{ gettext('La acción escogida no es valida.') }}
+                        </div>
+                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+            </div>
+            <div class="toast align-items-center text-white bg-danger border-0 custom-toast" role="alert" aria-live="assertive" aria-atomic="true" id="mensajeErrorFraseMicro">
+                    <div class="d-flex">
+                        <div class="toast-body">
+                            {{ gettext('Comando no válido, consultar el manual de usuario.') }}
+                        </div>
+                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+            </div>
+            <div class="toast align-items-center text-white bg-danger border-0 custom-toast" role="alert" aria-live="assertive" aria-atomic="true" id="mensajeErrorIdentificador">
+                    <div class="d-flex">
+                        <div class="toast-body">
+                            {{ gettext('El identificador es incorrecto.') }}
+                        </div>
+                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+            </div>
+            <div class="toast align-items-center text-white bg-danger border-0 custom-toast" role="alert" aria-live="assertive" aria-atomic="true" id="mensajeErrorIdentificador2">
+                    <div class="d-flex">
+                        <div class="toast-body">
+                            {{ gettext('El identificador del proyecto no es correcto, por favor no lo modifique a través de la herramienta inspeccionar del navegador.') }}
+                        </div>
+                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <header class="navbar navbar-expand-lg bg-body px-4 align-items-center pb-0 pt-2" style="background-color: darkgray !important;">
+        <div class="container-fluid mb-1 mb-lg-0 p-0">
+            <div class="d-flex flex-grow-1 flex-shrink-1 ">
+                <img src="../static/assets/img/icono.png" style="width: 33px;height: 33px;" />
+                <p class="mt-1 ms-2"><strong>InsightForge</strong></p>
+            </div>
+                <div class="justify-content-end">
+            <button data-bs-toggle="collapse" class="navbar-toggler " data-bs-target="#navcol-1">
+                <span class="visually-hidden">Toggle navigation</span>
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" id="navcol-1" style="background-color: darkgray;">
+            <nav>
+                <ul class="border-0 mx-auto list-unstyled" id="my-nav">
+                    <li class="nav-item my-2 my-lg-0" role="presentation"><a class="nav-link text-dark" role="tab" href="/goIndex">{{ gettext('Home') }}</a></li>
+                    {% if loged %}
+                      <li class="nav-item disabled my-2 my-lg-0" role="presentation"><a class="nav-link active" role="tab" href="/goMisProyectos" aria-disabled="true"><strong>{{ gettext('Mis Proyectos') }}</strong></a></li>
+                    {% else %}
+                      <li class="nav-item disabled my-2 my-lg-0" role="presentation"><a class="nav-link disabled" role="tab" href="/goMisProyectos" aria-disabled="true">{{ gettext('Mis Proyectos') }}</a></li>
+                    {% endif %}
+                    {% if loged %}
+                       <li class="nav-item my-2 my-lg-0" role="presentation"><a class="nav-link text-dark" role="tab" href="/goCrearProyecto">{{ gettext('Crear Proyecto') }}</a></li>
+                    {% else %}
+                        <li class="nav-item my-2 my-lg-0" role="presentation"><a class="nav-link disabled" role="tab" href="/goCrearProyecto">{{ gettext('Crear Proyecto') }}</a></li>
+                    {% endif %}
+                        <li class="nav-item my-2 my-lg-0" role="presentation"><a class="nav-link disabled" role="tab" href="/goResultado">{{ gettext('Resultados') }}</a></li>
+                </ul>
+            </nav>
+            <div class="d-flex flex-grow-1 flex-shrink-1 justify-content-end">
+                <ul class="navbar-nav me-2">
+                   <li class="nav-item"></li>
+                   <li class="nav-item"></li>
+                   <li class="nav-item"></li>
+                   <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            {{ LANGUAGES[current_language] }}
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="languageDropdown">
+                            {% for lang_code, lang_name in LANGUAGES.items() %}
+                            <li><a class="dropdown-item" href="{{ url_for('set_language', lang=lang_code) }}">{{ lang_name }}</a></li>
+                            {% endfor %}
+                        </ul>
+                   </li>
+                </ul>
+                {% if loged %}
+
+                   <a class="ms-2" href="/goLogout" style="align-items: end;float: right;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" style="font-size: 36px;">
+                      <path d="M8.51428 20H4.51428C3.40971 20 2.51428 19.1046 2.51428 18V6C2.51428 4.89543 3.40971 4 4.51428 4H8.51428V6H4.51428V18H8.51428V20Z" fill="currentColor"></path>
+                      <path d="M13.8418 17.385L15.262 15.9768L11.3428 12.0242L20.4857 12.0242C21.038 12.0242 21.4857 11.5765 21.4857 11.0242C21.4857 10.4719 21.038 10.0242 20.4857 10.0242L11.3236 10.0242L15.304 6.0774L13.8958 4.6572L7.5049 10.9941L13.8418 17.385Z" fill="currentColor"></path>
+                      </svg>
+                   </a>
+                {% else %}
+                   <a class="ms-2" href="/goLogin" style="align-items: end;float: right;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" style="font-size: 36px;">
+                    <path d="M15.4857 20H19.4857C20.5903 20 21.4857 19.1046 21.4857 18V6C21.4857 4.89543 20.5903 4 19.4857 4H15.4857V6H19.4857V18H15.4857V20Z" fill="currentColor"></path>
+                    <path d="M10.1582 17.385L8.73801 15.9768L12.6572 12.0242L3.51428 12.0242C2.96199 12.0242 2.51428 11.5765 2.51428 11.0242C2.51429 10.4719 2.962 10.0242 3.51429 10.0242L12.6765 10.0242L8.69599 6.0774L10.1042 4.6572L16.4951 10.9941L10.1582 17.385Z" fill="currentColor"></path>
+                    </svg>
+                   </a>
+                {% endif %}
+            </div>
+        </div>
+        </div>
+    </header>
+    <main>
+        <div class="row justify-content-center tablaEntera">
+            <div class="col-xl-10 col-xxl-11">
+                <div class="card shadow">
+                    <div class="card-header d-flex flex-wrap justify-content-center align-items-center justify-content-sm-between gap-3">
+                        <h5 class="display-6 text-nowrap text-capitalize mb-0">{{ gettext('Mis proyectos') }}</h5>
+                        <div class="col text-end">
+                            <span class="m-3 invisible" id="textoMicro">{{ gettext('Escuchando...') }}</span>
+                            <a href="#" id="start-stop-btn" role="button">
+                            <svg class="bi bi-mic-fill" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" style="font-size: 24px;">
+                                <path d="M5 3a3 3 0 0 1 6 0v5a3 3 0 0 1-6 0z"></path>
+                                <path d="M3.5 6.5A.5.5 0 0 1 4 7v1a4 4 0 0 0 8 0V7a.5.5 0 0 1 1 0v1a5 5 0 0 1-4.5 4.975V15h3a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1h3v-2.025A5 5 0 0 1 3 8V7a.5.5 0 0 1 .5-.5"></path>
+                            </svg>
+                            </a>
+                            <a href="#modalGuia" data-bs-toggle="modal" role="button">
+                                <svg class="bi bi-question" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" style="text-align: right;font-size: 28px;">
+                                    <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94"></path>
+                                </svg>
+                            </a>
+                        </div>
+                        <div class="input-group input-group-sm"><input id="search-input" class="form-control form-control-sm border-2" type="text"><button class="btn btn-outline-primary btn-sm mb-0" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-search mb-1">
+                                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path>
+                                </svg></button></div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>{{ gettext('ID') }}</th>
+                                        <th>{{ gettext('Nombre') }}</th>
+                                        <th>{{ gettext('Fecha') }}</th>
+                                        <th>{{ gettext('Estado') }}</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="table-data">
+                                </tbody>
+                            </table>
+                        </div>
+                        <a href="#" role="button" data-bs-toggle="modal" data-bs-target="#controlModal"><svg class="bi bi-activity" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" style="font-size: 26px;">
+                            <path fill-rule="evenodd" d="M6 2a.5.5 0 0 1 .47.33L10 12.036l1.53-4.208A.5.5 0 0 1 12 7.5h3.5a.5.5 0 0 1 0 1h-3.15l-1.88 5.17a.5.5 0 0 1-.94 0L6 3.964 4.47 8.171A.5.5 0 0 1 4 8.5H.5a.5.5 0 0 1 0-1h3.15l1.88-5.17A.5.5 0 0 1 6 2Z"></path>
+                        </svg>
+                        <div id="controlModal" class="modal fade" role="dialog" tabindex="-1" aria-labelledby="controlModal" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title tituloModal">{{ gettext('Progreso proyecto') }}</h4><button class="btn-close" type="button" aria-label="Close" data-bs-dismiss="modal"></button>
+                                    </div>
+                                    <div class="modal-body" id="mostrarBarras">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    </div>
+                    <div class="card-footer">
+                            <ul class="pagination pagination-sm mb-0 justify-content-center flex-wrap" id="pagination">
+                            </ul>
+                            <div id="page-content"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <input type="hidden" id="action_Id" value={{actionId}}>
+    <input type="hidden" id="valor" value={{userId}}>
+ <script src="http://localhost:3001/socket.io/socket.io.js"></script>
+    <script src="static/assets/bootstrap/js/bootstrap.min.js?h=e55bde7d6e36ebf17ba0b8c1e80e4065"></script>
+
+</body>
+</html>

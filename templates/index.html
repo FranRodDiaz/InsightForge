@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html data-bs-theme="light" lang="es-es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>{{ gettext('Home') }}</title>
+    <link rel="icon" type="image/x-icon" href="./static/assets/img/icono.png">
+    <link rel="stylesheet" href="static/assets/bootstrap/css/bootstrapHome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="static/assets/css/stylesHome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="stylesheet" href="static/assets/css/cssCabecera.css">
+    <link rel="stylesheet" href="static/assets/css/botonArriba.css">
+    <link rel="stylesheet" href="../static/assets/css/styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../static/assets/js/javascriptCabecera.js"></script>
+    <script src="../static/assets/js/botonArriba.js"></script>
+    <script src="../static/assets/js/errores.js"></script>
+</head>
+
+<body>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var error = {{ existUser | tojson if existUser is defined else 'null' }};
+
+            if(error){
+                var etiqueta = "#mensajeErrorContacto";
+                activarError(etiqueta)
+            }
+        })
+    </script>
+    <div aria-live="polite" aria-atomic="true" class="position-relative">
+        <div id="miToastContainer" class="toast-container position-absolute top-0 start-0 p-3">
+                <div class="toast align-items-center text-white bg-danger border-0 custom-toast" role="alert" aria-live="assertive" aria-atomic="true" id="mensajeErrorContacto">
+                    <div class="d-flex">
+                        <div class="toast-body">
+                            {{ gettext('El usuario no existe.') }}
+                        </div>
+                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+            </div>
+        </div>
+    </div>
+
+    <header class="navbar navbar-expand-lg bg-body px-4 align-items-center pb-0 pt-2" style="background-color: darkgray !important;">
+        <div class="container-fluid mb-1 mb-lg-0 p-0">
+            <div class="d-flex flex-grow-1 flex-shrink-1 ">
+                <img src="../static/assets/img/icono.png" style="width: 33px;height: 33px;" />
+                <p class="mt-1 ms-2"><strong>InsightForge</strong></p>
+            </div>
+                <div class="justify-content-end">
+            <button data-bs-toggle="collapse" class="navbar-toggler " data-bs-target="#navcol-1">
+                <span class="visually-hidden">Toggle navigation</span>
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" id="navcol-1" style="background-color: darkgray;">
+            <nav>
+                <ul class="border-0 mx-auto list-unstyled" id="my-nav">
+                    <li class="nav-item my-2 my-lg-0" role="presentation"><a class="nav-link active" role="tab" href="/goIndex"><strong>{{ gettext('Home') }}</strong></a></li>
+                    {% if loged %}
+                      <li class="nav-item disabled my-2 my-lg-0" role="presentation"><a class="nav-link text-dark" role="tab" href="/goMisProyectos" aria-disabled="true">{{ gettext('Mis Proyectos') }}</a></li>
+                    {% else %}
+                      <li class="nav-item disabled my-2 my-lg-0" role="presentation"><a class="nav-link disabled" role="tab" href="/goMisProyectos" aria-disabled="true">{{ gettext('Mis Proyectos') }}</a></li>
+                    {% endif %}
+                    {% if loged %}
+                       <li class="nav-item my-2 my-lg-0" role="presentation"><a class="nav-link text-dark" role="tab" href="/goCrearProyecto">{{ gettext('Crear Proyecto') }}</a></li>
+                    {% else %}
+                        <li class="nav-item my-2 my-lg-0" role="presentation"><a class="nav-link disabled" role="tab" href="/goCrearProyecto">{{ gettext('Crear Proyecto') }}</a></li>
+                    {% endif %}
+                        <li class="nav-item my-2 my-lg-0" role="presentation"><a class="nav-link disabled" role="tab" href="/goResultado">{{ gettext('Resultados') }}</a></li>
+                </ul>
+            </nav>
+            <div class="d-flex flex-grow-1 flex-shrink-1 justify-content-end">
+                <ul class="navbar-nav me-2">
+                   <li class="nav-item"></li>
+                   <li class="nav-item"></li>
+                   <li class="nav-item"></li>
+                   <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                {{ LANGUAGES[current_language] }}
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="languageDropdown">
+                                {% for lang_code, lang_name in LANGUAGES.items() %}
+                                <li><a class="dropdown-item" href="{{ url_for('set_language', lang=lang_code) }}">{{ lang_name }}</a></li>
+                                {% endfor %}
+                            </ul>
+                   </li>
+                </ul>
+                {% if loged %}
+
+                   <a class="ms-2" href="/goLogout" style="align-items: end;float: right;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" style="font-size: 36px;">
+                      <path d="M8.51428 20H4.51428C3.40971 20 2.51428 19.1046 2.51428 18V6C2.51428 4.89543 3.40971 4 4.51428 4H8.51428V6H4.51428V18H8.51428V20Z" fill="currentColor"></path>
+                      <path d="M13.8418 17.385L15.262 15.9768L11.3428 12.0242L20.4857 12.0242C21.038 12.0242 21.4857 11.5765 21.4857 11.0242C21.4857 10.4719 21.038 10.0242 20.4857 10.0242L11.3236 10.0242L15.304 6.0774L13.8958 4.6572L7.5049 10.9941L13.8418 17.385Z" fill="currentColor"></path>
+                      </svg>
+                   </a>
+                {% else %}
+                   <a class="ms-2" href="/goLogin" style="align-items: end;float: right;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" style="font-size: 36px;">
+                    <path d="M15.4857 20H19.4857C20.5903 20 21.4857 19.1046 21.4857 18V6C21.4857 4.89543 20.5903 4 19.4857 4H15.4857V6H19.4857V18H15.4857V20Z" fill="currentColor"></path>
+                    <path d="M10.1582 17.385L8.73801 15.9768L12.6572 12.0242L3.51428 12.0242C2.96199 12.0242 2.51428 11.5765 2.51428 11.0242C2.51429 10.4719 2.962 10.0242 3.51429 10.0242L12.6765 10.0242L8.69599 6.0774L10.1042 4.6572L16.4951 10.9941L10.1582 17.385Z" fill="currentColor"></path>
+                    </svg>
+                   </a>
+                {% endif %}
+            </div>
+        </div>
+        </div>
+    </header>
+    <main class="page lanidng-page">
+        <section class="portfolio-block block-intro">
+            <div class="container">
+                <div class="avatar" style="background-image:url(&quot;static/assets/img/icono.png?h=a6dc828db199f191db08f91d9df2b728&quot;);"></div>
+                <div class="about-me">
+                    <p>{{ gettext('Bienvenido a <strong>InsightForge</strong>, la Herramienta Innovadora para la Creación y Análisis de Proyectos de Modelado de Datos.') }}</p>
+                </div>
+            </div>
+        </section>
+        <section class="portfolio-block photography">
+            <div class="container">
+                <div class="row g-0">
+                    <div class="col-md-6 col-lg-4 item zoom-on-hover"><a href="#"><img class="img-fluid image" src="static/assets/img/imagen1.png?h=dfa56246a493db02797b024ba354688f"></a></div>
+                    <div class="col-md-6 col-lg-4 item zoom-on-hover"><a href="#"><img class="img-fluid image" src="static/assets/img/imagen2.png?h=c5fb06440e9759bec9433393cd5a9761"></a></div>
+                    <div class="col-md-6 col-lg-4 item zoom-on-hover"><a href="#"><img class="img-fluid image" src="static/assets/img/imagen3.png?h=e138a8bfe4ed72819d3bbf626d732745"></a></div>
+                </div>
+            </div>
+        </section>
+        <hr class="mt-5">
+        <section class="portfolio-block skills" id="caracteristicas">
+            <div class="container">
+                <!-- Start: portfolio heading -->
+                <div class="heading">
+                    <h2>{{ gettext('Características') }}</h2>
+                </div><!-- End: portfolio heading -->
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card special-skill-item border-0">
+                            <div class="card-header bg-transparent border-0"><i class="icon ion-social-python"></i></div>
+                            <div class="card-body">
+                                <h3 class="card-title">{{ gettext('Modelado de Datos') }}</h3>
+                                <p class="card-text">
+                                    {{ gettext('Modelado de datos con una plataforma intuitiva que permite la configuración y ejecución de proyectos de datos personalizados.
+                                    Especializada en la integración de datasets y en la simplificación del proceso de aprendizaje automático para usuarios de todos los niveles.') }}
+                                    </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card special-skill-item border-0">
+                            <div class="card-header bg-transparent border-0"><i class="icon ion-ios-pie"></i></div>
+                            <div class="card-body">
+                                <h3 class="card-title">{{ gettext('Visualización Analítica') }}</h3>
+                                <p class="card-text">
+                                    {{ gettext('Diseño de interfaces para la visualización analítica, facilitando la interpretación de modelos complejos a través de gráficos de explicabilidad como ICE plots y Dependence plots.
+                                    Comprometidos con la transparencia y la comprensión profunda de los resultados del modelo.') }}
+                                    </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card special-skill-item border-0">
+                            <div class="card-header bg-transparent border-0"><i class="icon ion-android-document"></i></div>
+                            <div class="card-body">
+                                <h3 class="card-title">{{ gettext('Información Predictiva') }}</h3>
+                                <p class="card-text">
+                                    {{ gettext('Extracción de conocimientos predictivos utilizando tecnología de punta en análisis de datos.
+                                                    Ofrecemos métricas detalladas del rendimiento del entrenamiento del modelo,
+                                                    permitiendo a los usuarios tomar decisiones informadas basadas en datos.') }}
+                                    </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <hr class="mt-5">
+         <section class="portfolio-block" id="contacto">
+        <div class="container">
+            <div class="heading">
+                <h2>{{ gettext('Contacto') }}</h2>
+                <p>
+                    {{ gettext('En caso de que quiera reportar un bug o recomendar alguna mejora por favor rellene el siguiente formulario.') }}
+                </p>
+            </div>
+
+            <form class="form" action="/contacto" method="POST">
+                {%if existUser %}
+                   <p class="text-danger">{{ gettext('El usuario no existe')}}</p>
+                {% endif %}
+                {% if not loged %}
+                <div class="form-group mb-3">
+                    <label for="userControl">{{ gettext('Usuario') }}</label>
+                    <input type="text" class="form-control" name="username">
+                </div>
+                {% endif %}
+                <div class="form-group">
+                    <label for="textareaControl">{{ gettext('Bug o recomendación') }}</label>
+                    <textarea class="form-control" id="textareaControl" rows="3" name="mensaje"></textarea>
+                </div>
+                <div class="d-flex justify-content-center mt-3 form-group-lg">
+                    <button type="submit" class="btn btn-primary btn-block w-100">{{ gettext('Enviar') }}</button>
+                </div>
+
+            </form>
+
+        </div>
+    </section>
+
+    </main>
+    <section class="portfolio-block website gradient" id="descripcion">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-12 col-lg-5 offset-lg-1 text">
+                    <h3>{{ gettext('Descripción de la Plataforma InsightForge') }}</h3>
+                    <p>
+                        {{ gettext('Explora las fronteras del análisis de datos con InsightForge. Nuestra plataforma se especializa en transformar conjuntos de datos complejos en modelos de aprendizaje automático accesibles y
+                        comprensibles. Con InsightForge, la creación de proyectos es tan sencilla como innovadora, ofreciendo a los usuarios la capacidad de configurar, ejecutar y analizar con total control y flexibilidad.') }}
+                    </p>
+                    <p>
+                        {{ gettext('Desde visualizaciones interactivas hasta métricas predictivas, InsightForge está diseñada para empoderar tanto a científicos de datos como a analistas de negocios. Sumérgete en la riqueza de tus datos con gráficos de explicabilidad avanzados como ICE y
+                        Dependence plots, y descubre insights que impulsarán tus decisiones estratégicas hacia adelante.') }}
+                    </p>
+                </div>
+                <div class="col-md-12 col-lg-5">
+                    <div class="portfolio-laptop-mockup">
+                        <div class="screen">
+                            <div class="screen-content" style="background-image:url(&quot;static/assets/img/paginaCrearProyecto.png?h=19ccc915f4703e4a2ebac4bf2082423d&quot;);"></div>
+                        </div>
+                        <div class="keyboard"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="page-footer py-3 border-top">
+        <div class="container my-4">
+            <div class="links"><a href="#caracteristicas">{{ gettext('Características') }}</a><a href="#contacto">{{ gettext('Contacto') }}</a><a href="#descripcion">{{ gettext('Descripción') }}</a></div>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="static/assets/js/script.min.js"></script>
+    <button onclick="topFunction()" id="myBtn" title="Go to top" class="gradient"><i class="fas fa-arrow-up"></i></button>
+</body>
+</html>

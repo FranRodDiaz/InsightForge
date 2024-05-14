@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html data-bs-theme="light" lang="es-es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>{{ gettext('Crear Proyecto') }}</title>
+    <link rel="icon" type="image/x-icon" href="./static/assets/img/icono.png">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tom-select/2.2.2/css/tom-select.bootstrap5.min.css" integrity="sha512-mNN7o87hQqtNCCGWxFVdlVdaKF6d4S1wVMi3+ftJYnW572YIo0KPjK1Cns5SPlyCtKGp1Nu+z26MJUNXmpbjKA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tom-select/2.2.2/js/tom-select.complete.js" integrity="sha512-KfTOBVJv8qnV1b+2tsbTLepS7+RAgmVV0Odk6cj1eHxbR8WFX99gwIWOutwFAUlsve3FaGG3VxoPWWLRnehX1w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="../static/assets/js/form.js"></script>
+    <script src="../static/assets/js/artyom.js"></script>
+    <script src="../static/assets/js/artyom.window.js"></script>
+    <script src="../static/assets/js/recognitionAudioCrearProyecto.js"></script>
+    <script src="../static/assets/js/javascriptCabecera.js"></script>
+    <link rel="stylesheet" href="static/assets/bootstrap/css/bootstrapHome.min.css?h=cd822b7fd22c8a95a68470c795adea69">
+    <link rel="stylesheet" href="static/assets/css/misProyectos.css?h=3c0b206e0d24c0c015cdc6975c8ec5e1">
+    <link rel="stylesheet" href="static/assets/css/select.css?h=a8f48a84b056f5db258f00389f001817">
+    <link rel="stylesheet" href="static/assets/css/styles.css?h=13d1606d53e127f94edece921d5dd45a">
+    <link rel="stylesheet" href="static/assets/css/cssCabecera.css">
+</head>
+
+<body>
+<script type="text/javascript">
+    $(document).ready(function() {
+        var duplicate = {{ duplicate | tojson }};
+
+        if(duplicate){
+            var controlVar = {{ control_var | default('')  | tojson }};
+            var problemType = {{ problem_type | default('') | tojson }};
+            var file_name = {{ file_name | default('') | tojson }};
+            var model = {{ model | default('') | tojson }};
+            var column_types = {{ column_types | default('') | tojson }};
+            var datasets = {{ datasets | default('') | tojson }};
+            var positiveClass = {{ positiveClass | default('') | tojson }};
+            var nombreProyecto = {{ nombreProyecto | default('') | tojson }};
+            var valores = {{ valores | default('') | tojson }};
+
+
+            presentarDatos(controlVar, problemType, file_name, model, column_types, datasets, positiveClass, nombreProyecto, valores);
+        }
+    })
+</script>
+    <header class="navbar navbar-expand-lg bg-body px-4 align-items-center pb-0 pt-2" style="background-color: darkgray !important;">
+        <div class="container-fluid mb-1 mb-lg-0 p-0">
+            <div class="d-flex flex-grow-1 flex-shrink-1 ">
+                <img src="../static/assets/img/icono.png" style="width: 33px;height: 33px;" />
+                <p class="mt-1 ms-2"><strong>InsightForge</strong></p>
+            </div>
+                <div class="justify-content-end">
+            <button data-bs-toggle="collapse" class="navbar-toggler " data-bs-target="#navcol-1">
+                <span class="visually-hidden">Toggle navigation</span>
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" id="navcol-1" style="background-color: darkgray;">
+            <nav>
+                <ul class="border-0 mx-auto list-unstyled" id="my-nav">
+                    <li class="nav-item my-2 my-lg-0" role="presentation"><a class="nav-link text-dark" role="tab" href="/goIndex">{{ gettext('Home') }}</a></li>
+                    {% if loged %}
+                      <li class="nav-item disabled my-2 my-lg-0" role="presentation"><a class="nav-link text-dark" role="tab" href="/goMisProyectos" aria-disabled="true">{{ gettext('Mis Proyectos') }}</a></li>
+                    {% else %}
+                      <li class="nav-item disabled my-2 my-lg-0" role="presentation"><a class="nav-link disabled" role="tab" href="/goMisProyectos" aria-disabled="true">{{ gettext('Mis Proyectos') }}</a></li>
+                    {% endif %}
+                    {% if loged %}
+                       <li class="nav-item my-2 my-lg-0" role="presentation"><a class="nav-link active" role="tab" href="/goCrearProyecto"><strong>{{ gettext('Crear Proyecto') }}</strong></a></li>
+                    {% else %}
+                        <li class="nav-item my-2 my-lg-0" role="presentation"><a class="nav-link disabled" role="tab" href="/goCrearProyecto">{{ gettext('Crear Proyecto') }}</a></li>
+                    {% endif %}
+                        <li class="nav-item my-2 my-lg-0" role="presentation"><a class="nav-link disabled" role="tab" href="/goResultado">{{ gettext('Resultados') }}</a></li>
+                </ul>
+            </nav>
+            <div class="d-flex flex-grow-1 flex-shrink-1 justify-content-end">
+                <ul class="navbar-nav me-2">
+                   <li class="nav-item"></li>
+                   <li class="nav-item"></li>
+                   <li class="nav-item"></li>
+                   <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                {{ LANGUAGES[current_language] }}
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="languageDropdown">
+                                {% for lang_code, lang_name in LANGUAGES.items() %}
+                                <li><a class="dropdown-item" href="{{ url_for('set_language', lang=lang_code) }}">{{ lang_name }}</a></li>
+                                {% endfor %}
+                            </ul>
+                   </li>
+                </ul>
+                {% if loged %}
+
+                   <a class="ms-2" href="/goLogout" style="align-items: end;float: right;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" style="font-size: 36px;">
+                      <path d="M8.51428 20H4.51428C3.40971 20 2.51428 19.1046 2.51428 18V6C2.51428 4.89543 3.40971 4 4.51428 4H8.51428V6H4.51428V18H8.51428V20Z" fill="currentColor"></path>
+                      <path d="M13.8418 17.385L15.262 15.9768L11.3428 12.0242L20.4857 12.0242C21.038 12.0242 21.4857 11.5765 21.4857 11.0242C21.4857 10.4719 21.038 10.0242 20.4857 10.0242L11.3236 10.0242L15.304 6.0774L13.8958 4.6572L7.5049 10.9941L13.8418 17.385Z" fill="currentColor"></path>
+                      </svg>
+                   </a>
+                {% else %}
+                   <a class="ms-2" href="/goLogin" style="align-items: end;float: right;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" style="font-size: 36px;">
+                    <path d="M15.4857 20H19.4857C20.5903 20 21.4857 19.1046 21.4857 18V6C21.4857 4.89543 20.5903 4 19.4857 4H15.4857V6H19.4857V18H15.4857V20Z" fill="currentColor"></path>
+                    <path d="M10.1582 17.385L8.73801 15.9768L12.6572 12.0242L3.51428 12.0242C2.96199 12.0242 2.51428 11.5765 2.51428 11.0242C2.51429 10.4719 2.962 10.0242 3.51429 10.0242L12.6765 10.0242L8.69599 6.0774L10.1042 4.6572L16.4951 10.9941L10.1582 17.385Z" fill="currentColor"></path>
+                    </svg>
+                   </a>
+                {% endif %}
+            </div>
+        </div>
+        </div>
+    </header>
+
+    <div aria-live="polite" aria-atomic="true" class="position-relative">
+    <div class="toast-container position-absolute top-0 start-0 p-3">
+        <!-- Primer toast: Error de variable de control -->
+        <div class="toast align-items-center text-white bg-danger border-0 custom-toast" role="alert" aria-live="assertive" aria-atomic="true" id="mensajeErrorControl">
+            <div class="d-flex">
+                <div class="toast-body">
+                    {{ gettext('Debe seleccionar alguna variable de control.') }}
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+        <!-- Segundo toast: Error de columna clase -->
+        <div class="toast align-items-center text-white bg-danger border-0 custom-toast" role="alert" aria-live="assertive" aria-atomic="true" id="mensajeErrorClase">
+            <div class="d-flex">
+                <div class="toast-body">
+                    {{ gettext('Debe seleccionar una columna clase.') }}
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+        <!-- Tercero toast: Error de nombre proyecto -->
+        <div class="toast align-items-center text-white bg-danger border-0 custom-toast" role="alert" aria-live="assertive" aria-atomic="true" id="mensajeErrorNombreVacio">
+            <div class="d-flex">
+                <div class="toast-body">
+                    {{ gettext('Debes introducir un nombre para el proyecto.') }}
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+         <!-- Cuarto toast: Error de tipoProblema  -->
+        <div class="toast align-items-center text-white bg-danger border-0 custom-toast" role="alert" aria-live="assertive" aria-atomic="true" id="mensajeErrorTipoProblema">
+            <div class="d-flex">
+                <div class="toast-body">
+                    {{ gettext('Debe seleccionar el tipo de problema.') }}
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+        <!-- Quinto toast: Error de control  -->
+        <div class="toast align-items-center text-white bg-danger border-0 custom-toast" role="alert" aria-live="assertive" aria-atomic="true" id="mensajeErrorControlClase">
+            <div class="d-flex">
+                <div class="toast-body">
+                    {{ gettext('Ya has seleccionado la variable como clase.') }}
+
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+        <!-- Sexto toast -->
+        <div class="toast align-items-center text-white bg-danger border-0 custom-toast" role="alert" aria-live="assertive" aria-atomic="true" id="mensajeErrorNombreControlExterna">
+            <div class="d-flex">
+                <div class="toast-body">
+                    {{ gettext('Ya has seleccionado la variable como externa.') }}
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+        <!-- Septimo toast -->
+        <div class="toast align-items-center text-white bg-danger border-0 custom-toast" role="alert" aria-live="assertive" aria-atomic="true" id="mensajeErrorNombreExternaControl">
+            <div class="d-flex">
+                <div class="toast-body">
+                    {{ gettext('Ya has seleccionado la variable como control.') }}
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+        <!-- Octavo toast -->
+        <div class="toast align-items-center text-white bg-danger border-0 custom-toast" role="alert" aria-live="assertive" aria-atomic="true" id="mensajeErrorNombreRepetido">
+            <div class="d-flex">
+                <div class="toast-body">
+                    {{ gettext('Ya tienes un proyecto con este nombre, introduce otro nombre.') }}
+
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+        <!-- Noveno toast -->
+        <div class="toast align-items-center text-white bg-danger border-0 custom-toast" role="alert" aria-live="assertive" aria-atomic="true" id="mensajeErrorClasePositiva">
+            <div class="d-flex">
+                <div class="toast-body">
+                    {{ gettext('Debes seleccionar una clase positiva.') }}
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+        <div class="toast align-items-center text-white bg-danger border-0 custom-toast" role="alert" aria-live="assertive" aria-atomic="true" id="mensajeErrorFraseMicro">
+            <div class="d-flex">
+                <div class="toast-body">
+                    {{ gettext('La frase dicha no contiene información relevante.') }}
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+
+        <div class="toast align-items-center text-white bg-danger border-0 custom-toast" role="alert" aria-live="assertive" aria-atomic="true" id="mensajeErrorDatosMicro">
+            <div class="d-flex">
+                <div class="toast-body">
+                    {{ gettext('Debes de cargar primero un conjunto de datos.') }}
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+
+        <div class="toast align-items-center text-white bg-danger border-0 custom-toast" role="alert" aria-live="assertive" aria-atomic="true" id="mensajeErrorTamanioArchivo">
+            <div class="d-flex">
+                <div class="toast-body">
+                    {{ gettext('El tamaño del archivo supera el máximo, el cual es de 25 MB.') }}
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+
+        <div class="toast align-items-center text-white bg-danger border-0 custom-toast" role="alert" aria-live="assertive" aria-atomic="true" id="mensajeErrorExtensionArchivo">
+            <div class="d-flex">
+                <div class="toast-body">
+                    {{ gettext('La extensión del archivo es incorrecta, solamente se admiten archivos .csv.') }}
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+</div>
+    <main>
+        {% include 'tutorial.html' %}
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 form-text fondo">
+                <div class="row">
+                    <div class="col">
+                        <h4 style="color: black;">{{ gettext('Nombre del proyecto') }}</h4>
+                    </div>
+                    <div class="col text-end">
+                        <span class="m-3 invisible" id="textoMicro">{{ gettext('Escuchando...') }}</span>
+                        <a href="#" id="start-stop-btn" role="button">
+                            <svg class="bi bi-mic-fill" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" style="font-size: 24px;">
+                                <path d="M5 3a3 3 0 0 1 6 0v5a3 3 0 0 1-6 0z"></path>
+                                <path d="M3.5 6.5A.5.5 0 0 1 4 7v1a4 4 0 0 0 8 0V7a.5.5 0 0 1 1 0v1a5 5 0 0 1-4.5 4.975V15h3a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1h3v-2.025A5 5 0 0 1 3 8V7a.5.5 0 0 1 .5-.5"></path>
+                            </svg>
+                        </a>
+                        <a href="#modalIntroductorio" data-bs-toggle="modal" role="button">
+                            <svg class="bi bi-question text-start" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" style="text-align: right;margin: 8px;font-size: 30px;">
+                                <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+
+                    <input type="text" id="nombreProyecto" class="form-control" name="nameProject" value=""
+                            {% if fields_disabled == True %}
+                                disabled
+                            {% elif fields_disabled == False %}
+                                {{ '' }}
+                            {% else %}
+                                disabled
+                            {% endif %}
+                    >
+                </div>
+            </div>
+        </div>
+        <div class="container elementos">
+            <div class="row d-flex align-items-stretch">
+                <div class="col-md-6 ">
+                    <div class="row fondo parte1 columna1">
+                        <div class="col">
+                            <div class="row">
+                                <div class="col">
+                                    <h4>{{ gettext('Introduzca los archivos a seleccionar') }}</h4>
+                                </div>
+                            </div>
+                            <input id="file-upload" type="file" class="d-none" name="ficheros">
+                            <div class="row">
+                                <div class="col">
+                                    <h6 class="mensajeFichero">{{ gettext('Datasets:') }}</h6>
+                                </div>
+
+                            <div class="col">
+                                <select name="selectDataset" id="selectDataset" class="form-select" autocomplete="off"
+                                        {% if loged %}
+                                            {{ '' }}
+                                        {% else %}
+                                             disabled
+                                        {% endif %}
+                                >
+                                    <option value="ns"></option>
+                                    {% if datasets is iterable %}
+                                        {% for dataset in datasets%}
+                                            <option value="{{dataset[1]}}">{{dataset[0]}}</option>
+                                        {% endfor %}
+                                    {% endif %}
+                                </select>
+                            </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col segundaPartePrimerElemento">
+                                    <span id="file-count">{{ gettext('Ningún archivo seleccionado')}}</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <label for="file-upload" class="col-form-label custom-file-upload">{{ gettext('Seleccione su archivo') }}</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row fondo parte2 columna1">
+                        <div class="row">
+                           <div class="col mb-0 ">
+                               <h4>{{ gettext('Variables y Validación') }}</h4>
+                           </div>
+                        </div>
+                        <div class="col text-center d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex d-xxl-flex flex-column justify-content-center align-items-center align-items-sm-center align-items-md-center align-items-lg-center justify-content-xl-center align-items-xl-center justify-content-xxl-center align-items-xxl-center">
+
+                            <button class="btn btn-primary" id="btnVariablesControl" type="button" data-bs-toggle="modal" data-bs-target="#controlModal">{{ gettext('Variables control') }}</button>
+                            {% if duplicate %}
+                                {% if checkbox_vars == [''] %}
+                                    <p class="mt-3" id="selectedCountControl">0/{{ column_types.keys()|length }} {{ gettext('seleccionadas') }}</p>
+                                {% else %}
+                                    <p class="mt-3" id="selectedCountControl">{{ checkbox_vars|length }}/{{ column_types.keys()|length }} {{ gettext('seleccionadas') }}</p>
+                                {% endif %}
+                            {% else %}
+                                <p class="mt-3" id="selectedCountControl"></p>
+                            {% endif %}
+                            <div class="modal fade" role="dialog" tabindex="-1" id="controlModal" aria-labelledby="controlModal" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <div class="w-100">
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <h4 class="modal-title" id="uploadModalLabel">Variables de control</h4>
+                                                    <button type="button" class="close btn btn-primary rounded-4" id="btnclosemass" data-bs-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">OK</span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-body overflow-auto" style="max-height: 60vh;">
+                                            <div class="row">
+                                                <input type="text" id="searchInput1" class="form-control rounded-pill mb-3" placeholder="Buscar...">
+                                            </div>
+                                            <ul id="checkboxListControl" class="list-group">
+                                            {% if duplicate %}
+                                                {% for column in column_types.keys()  %}
+                                                    <li class="list-group-item">
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" name="controlColumns" value="{{ column }}"
+                                                                {% if column in checkbox_vars %} checked {% endif %}>
+                                                            <label class="form-check-label">{{ column }}</label>
+                                                        </div>
+                                                    </li>
+                                                {% endfor %}
+                                            {% endif %}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col text-center d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex d-xxl-flex flex-column justify-content-center align-items-center align-items-sm-center align-items-md-center align-items-lg-center justify-content-xl-center align-items-xl-center justify-content-xxl-center align-items-xxl-center">
+                            <button class="btn btn-primary" id="btnValidacion" type="button" data-bs-toggle="modal" data-bs-target="#validationModal">{{ gettext('Validación') }}</button>
+                            {% if duplicate %}
+                                <p class="mt-3" id="validationInfo">
+                                {% if validation[0] == "HO" %}
+                                    {{ gettext('Hold out') }} - {{ validation[1] }}% {{ gettext('training') }}
+                                {% elif validation[0] == "CV" %}
+                                    {{ gettext('Cross Validation') }} - {{ validation[1] }} {{ gettext('Folds') }}
+                                {% endif %}
+                                </p>
+                            {% else %}
+                                <p class="mt-3" id="validationInfo"></p>
+                            {% endif %}
+                            <div class="modal fade" role="dialog" tabindex="-1" id="validationModal" aria-labelledby="validationModal" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <div class="w-100">
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <h4 class="modal-title" id="uploadModalLabel">{{ gettext('Validaciones') }}</h4>
+                                                    <button type="button" class="close btn btn-primary rounded-4" id="btnclosemass" data-bs-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">OK</span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-body" style="max-height: 60vh;">
+                                            {% if duplicate %}
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="validacion" id="holdOutRadio" value="HO" {% if validation[0] == 'HO' %}checked{% endif %}>
+                                                        <label class="form-check-label" for="holdOutRadio">{{ gettext('Hold-out') }}</label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="validacion" id="crossValidationRadio" value="CV" {% if validation[0] == 'CV' %}checked{% endif %}>
+                                                        <label class="form-check-label" for="crossValidationRadio">{{ gettext('Cross Validation') }}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="row">
+                                                        <div class="col-10">
+                                                        <input type="number" name="porcentajeTrain" id="porcentajeTrain" value="{{ validation[1] if validation[0] == 'HO' else '70' }}" step="1" {% if validation[0] != 'HO' %}disabled{% endif %}>
+                                                        </div>
+                                                        <div class="col-1 d-flex justify-content-center align-items-center mensajeValidacion">
+                                                        <span>%</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-10">
+                                                        <input type="number" name="kFolds" id="kFolds"  value="{{ validation[1] if validation[0] == 'CV' else '10' }}" step="1" {% if validation[0] != 'CV' %}disabled{% endif %}>
+                                                        </div>
+                                                        <div class="col-1 d-flex justify-content-center align-items-center mensajeValidacion">
+                                                        <span>{{ gettext('Folds') }}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {% else %}
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="validacion" id="holdOutRadio" value="HO" checked>
+                                                        <label class="form-check-label" for="holdOutRadio">{{ gettext('Hold-out') }}</label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="validacion" id="crossValidationRadio" value="CV">
+                                                        <label class="form-check-label" for="crossValidationRadio">{{ gettext('Cross Validation') }}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="row">
+                                                        <div class="col-10">
+                                                        <input type="number" name="porcentajeTrain" id="porcentajeTrain" value="70" step="1">
+                                                        </div>
+                                                        <div class="col-1 d-flex justify-content-center align-items-center mensajeValidacion">
+                                                        <span>%</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-10">
+                                                        <input type="number" name="kFolds" id="kFolds" value="10" step="1" disabled>
+                                                        </div>
+                                                        <div class="col-1 d-flex justify-content-center align-items-center mensajeValidacion">
+                                                        <span>{{ gettext('Folds') }}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col text-center d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex d-xxl-flex flex-column justify-content-center align-items-center align-items-sm-center align-items-md-center align-items-lg-center justify-content-xl-center align-items-xl-center justify-content-xxl-center align-items-xxl-center">
+                            <button class="btn btn-primary d-xxl-flex justify-content-xxl-center align-items-xxl-center" id="btnVariablesExternas" type="button" data-bs-toggle="modal" data-bs-target="#externasModal">{{ gettext('Variables externas') }}</button>
+                            {% if duplicate %}
+                                {% if extern_vars is none or extern_vars == [''] %}
+                                    <p class="mt-3" id="selectedCountExtern">0/{{ column_types.keys()|length }} {{ gettext('seleccionadas') }}</p>
+                                {% else %}
+                                    <p class="mt-3" id="selectedCountExtern">{{ extern_vars|length }}/{{ column_types.keys()|length }} {{ gettext('seleccionadas') }}</p>
+                                {% endif %}
+                            {% else %}
+                                <p class="mt-3" id="selectedCountExtern"></p>
+                            {% endif %}
+                            <div class="modal fade" role="dialog" tabindex="-1" id="externasModal" aria-labelledby="externasModal" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <div class="w-100">
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <h4 class="modal-title" id="uploadModalLabel" style="color: var(--bs-emphasis-color);text-align: left;">{{ gettext('Variables externas') }}</h4>
+                                                    <button type="button" class="close btn btn-primary rounded-4" id="btnclosemass" data-bs-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">OK</span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-body overflow-auto" style="max-height: 60vh;">
+                                            <div class="row">
+                                                <input type="text" id="searchInput2" class="form-control rounded-pill mb-3" placeholder="Buscar...">
+                                            </div>
+                                            <ul id="checkboxListExterno" class="list-group">
+                                                {% if duplicate %}
+                                                {% for column in column_types.keys()  %}
+                                                    <li class="list-group-item">
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" name="externaColumns" value="{{ column }}"
+                                                                {% if column in extern_vars %} checked {% endif %}>
+                                                            <label class="form-check-label">{{ column }}</label>
+                                                        </div>
+                                                    </li>
+                                                {% endfor %}
+                                            {% endif %}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row fondo parte1" style="">
+                        <div class="col">
+                            <div class="row">
+                                <div class="col">
+                                    <h4>{{ gettext('Columna Clase (Objetivo)') }}</h4>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <h6 class="mensajeColumnaClase1">{{ gettext('Tipo problema:') }}</h6>
+                                </div>
+                                <div class="col">
+                                    <form>
+                                        <div class="field">
+                                            <select id="selectTipoProblema" class="form-select" name="tipoProblema" autocomplete="off"
+                                                 {% if fields_disabled == True %}
+                                                    disabled
+                                                {% elif fields_disabled == False %}
+                                                    {{ '' }}
+                                                {% else %}
+                                                    disabled
+                                                {% endif %}
+                                            >
+                                                    <option value="ns" {% if problem_type != 'clasificacion' and problem_type != 'regresion' %}selected{% endif %}></option>
+                                                    <option value="regresion" {% if problem_type == 'regresion' %}selected{% endif %}>{{ gettext('Regresión') }}</option>
+                                                    <option value="clasificacion" {% if problem_type == 'clasificacion' %}selected{% endif %}>{{ gettext('Clasificación') }}</option>
+                                            </select>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <h6 class="mensajeColumnaClase2">{{ gettext('Clase positiva:') }}</h6>
+                                </div>
+                                <div class="col">
+                                    <form>
+                                        <div class="field">
+                                            <select name="clasePositiva" class="form-select"  id="selectPositiveClase" autocomplete="off"
+                                            {% if fields_disabled == True %}
+                                                    disabled
+                                                {% elif fields_disabled == False %}
+                                                    {{ '' }}
+                                                {% else %}
+                                                    disabled
+                                                {% endif %}>
+                                                <option value="ns" selected=""></option>
+                                            </select>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <form>
+                                        <div class="field">
+                                            <select id="selectListClase" class="form-select" name="columnaClase" autocomplete="off"
+                                            {% if fields_disabled == True %}
+                                                    disabled
+                                                {% elif fields_disabled == False %}
+                                                    {{ '' }}
+                                                {% else %}
+                                                    disabled
+                                                {% endif %}>
+                                            <option value="ns" selected=""></option>
+                                            </select>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row fondo parte2">
+                        <div class="col">
+                            <div class="row">
+                                <div class="col">
+                                    <h4>{{ gettext('Algoritmos') }}</h4>
+                                    <p class="text-danger d-none" id="mensajeModelos">{{ gettext('Necesita seleccionar el tipo del problema, para seleccionar el modelo') }}</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-check algoritmos" id="algoritmos">
+                                        <input class="form-check-input" id="formCheck-4" type="radio" name="modelos" value="RF" {% if model == "RF" %}checked{% endif %}
+                                            {% if fields_disabled == True %}
+                                                disabled
+                                            {% elif fields_disabled == False %}
+                                                {{ '' }}
+                                            {% else %}
+                                                disabled
+                                            {% endif %}
+                                        >
+                                        <label class="form-check-label" for="formCheck-4">{{ gettext('Random Forest') }}</label>
+                                    </div>
+                                    <div class="form-check algoritmos" id="algoritmos">
+                                        <input class="form-check-input" id="formCheck-6" type="radio" name="modelos" value="AML" {% if model == "AML" %}checked{% endif %}
+                                           {% if fields_disabled == True %}
+                                             disabled
+                                           {% elif fields_disabled == False %}
+                                             {{ '' }}
+                                           {% else %}
+                                             disabled
+                                           {% endif %}
+                                        >
+                                        <label class="form-check-label" for="formCheck-6">AutoML</label>
+                                    </div>
+                                    <div class="form-check algoritmos" id="algoritmos">
+                                        <input class="form-check-input" id="formCheck-7" type="radio" name="modelos" value="RN" {% if model == "RN" %}checked{% endif %}
+                                           {% if fields_disabled == True %}
+                                             disabled
+                                           {% elif fields_disabled == False %}
+                                             {{ '' }}
+                                           {% else %}
+                                             disabled
+                                           {% endif %}
+                                        >
+                                        <label class="form-check-label" for="formCheck-7">{{ gettext('Redes Neuronales') }}</label>
+                                    </div>
+
+                                    <div class="form-check algoritmos" id="algoritmos">
+                                        <input class="form-check-input" id="formCheck-5" type="radio" name="modelos" value="GBM" {% if model == "GBM" %}checked{% endif %}
+                                           {% if fields_disabled == True %}
+                                             disabled
+                                           {% elif fields_disabled == False %}
+                                             {{ '' }}
+                                           {% else %}
+                                             disabled
+                                           {% endif %}
+                                        >
+                                        <label class="form-check-label" for="formCheck-5">Gradient Boosting Machine</label>
+                                    </div>
+                                </div>
+                                <div class="col">
+
+                                <div class="form-check algoritmos" id="algoritmos">
+                                        <input class="form-check-input" id="formCheck-1" type="radio" name="modelos" value="RLIN" {% if model == "RLIN" %}checked{% endif %}
+                                           {% if fields_disabled == True %}
+                                             disabled
+                                           {% elif fields_disabled == False %}
+                                             {{ '' }}
+                                           {% else %}
+                                             disabled
+                                           {% endif %}
+                                        >
+                                        <label class="form-check-label" for="formCheck-1">{{ gettext('Regresión Lineal') }}</label>
+                                    </div>
+                                    <div class="form-check algoritmos" id="algoritmos">
+                                        <input class="form-check-input" id="formCheck-2" type="radio" name="modelos" value="RLOG" {% if model == "RLOG" %}checked{% endif %}
+                                           {% if fields_disabled == True %}
+                                             disabled
+                                           {% elif fields_disabled == False %}
+                                             {{ '' }}
+                                           {% else %}
+                                             disabled
+                                           {% endif %}
+                                        >
+                                        <label class="form-check-label" for="formCheck-2">{{ gettext('Regresión Logística') }}</label>
+                                    </div>
+                                    <div class="form-check algoritmos" id="algoritmos">
+                                        <input class="form-check-input" id="formCheck-3" type="radio" name="modelos" value="NB" {% if model == "NB" %}checked{% endif %}
+                                           {% if fields_disabled == True %}
+                                             disabled
+                                           {% elif fields_disabled == False %}
+                                             {{ '' }}
+                                           {% else %}
+                                             disabled
+                                           {% endif %}
+                                        >
+                                        <label class="form-check-label" for="formCheck-3">Naive Bayes</label>
+                                    </div>
+                                </div>
+                            <input type="hidden" id="action_id" value="{{action_id}}" name="actionID">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container mt-3">
+            <div class="row d-xl-flex">
+                <div class="col-md-12 d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-center align-items-center justify-content-sm-center align-items-sm-center justify-content-md-center align-items-md-center justify-content-lg-center align-items-lg-center justify-content-xl-center align-items-xl-center">
+                {% if actualizar == True %}
+                    <button class="btn btn-primary fw-bold d-inline-flex flex-grow-1 justify-content-center flex-wrap align-items-xl-center" type="button" id="botonActualizar">{{ gettext('Actualizar') }}</button>
+                {% else %}
+                    <button class="btn btn-primary fw-bold d-inline-flex flex-grow-1 justify-content-center flex-wrap align-items-xl-center" type="button" id="botonEnvio"
+                    {% if fields_disabled == True %}
+                        disabled
+                    {% elif fields_disabled == False %}
+                        {{ '' }}
+                    {% else %}
+                        disabled
+                    {% endif %}
+                    >
+                      {% if loged %}
+                        {{ gettext('Crear') }}
+                      {% else %}
+                        Procesar
+                      {% endif %}
+                    </button>
+                {% endif %}
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+
+
+    <script src="static/assets/bootstrap/js/bootstrap.min.js?h=e55bde7d6e36ebf17ba0b8c1e80e4065"></script>
+</body>
+
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Tutorial Mis Proyectos</title>
+    <link rel="stylesheet" href="static/assets/bootstrap/css/bootstrapHome.min.css?h=cd822b7fd22c8a95a68470c795adea69">
+    <link rel="stylesheet" href="static/assets/fonts/line-awesome.min.css?h=d98553506d4393860db8a633e4842ead">
+    <link rel="stylesheet" href="static/assets/css/misProyectos.css?h=3c0b206e0d24c0c015cdc6975c8ec5e1">
+    <link rel="stylesheet" href="static/assets/css/select.css?h=a8f48a84b056f5db258f00389f001817">
+    <link rel="stylesheet" href="static/assets/css/styles.css?h=13d1606d53e127f94edece921d5dd45a">
+</head>
+<body>
+    <!--Modal para la guía-->
+    <div class="modal fade" id="modalGuia" aria-hidden="true" aria-labelledby="modalGuia" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="modalGuiaLabel">{{ gettext('Guía de Mis Proyectos') }}</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              {{ gettext('A continuación, se muestra una guía que describe las acciones que se pueden realizar con un proyecto creado.') }}
+                <br>
+                <br>
+                <div class="row text-center">
+                    <div class="col">
+                        <button class="btn btn-primary w-50" data-bs-target="#modalView" data-bs-toggle="modal">{{ gettext('Acción "View"') }}</button>
+                    </div>
+                    <div class="col">
+                        <button class="btn btn-primary w-50" data-bs-target="#modalStart" data-bs-toggle="modal">{{ gettext('Acción "Start"') }}</button>
+                    </div>
+                </div>
+
+                <div class="row text-center mt-2">
+                  <div class="col">
+                      <button class="btn btn-primary w-50" data-bs-target="#modalCopy" data-bs-toggle="modal">{{ gettext('Acción "Copy"') }}</button>
+                  </div>
+                  <div class="col">
+                      <button class="btn btn-primary w-50" data-bs-target="#modalDownload" data-bs-toggle="modal">{{ gettext('Acción "Download"') }}</button>
+                  </div>
+              </div>
+            <br>
+            <br>
+            {{ gettext('Además, de las acciones se muestran el nombre del proyecto, la fecha en la que el proyecto fue creado y el estado en que se encuentra. Entre los estados posibles tenemos:') }}
+              <ul>
+                  <li>{{ gettext('Not configured: El proyecto todavía no se ha terminado de configurar, por lo tanto, no se ejecutar. En este caso se muestra
+                  una ventana emergente que pregunta al usuario si quiere terminar de configurarlo.') }}</li>
+                  <li>{{ gettext('Not started: El proyecto todavía no se ha ejecutado. Las acciones posibles son "Copy" y "Start".') }}</li>
+                  <li>{{ gettext('Running: El proyecto está ejecutándose. La acción posible es "Copy".') }}</li>
+                  <li>{{ gettext('Done: El proyecto ya se ha ejecutado. Las acciones posibles son "View", "Copy" y "Download".') }}</li>
+              </ul>
+              {{ gettext('Además, de las acciones definidas arribas también está la acción borrar que elimina un proyecto seleccionado.
+              Si desea eliminar todos los proyectos deberá decir el comando de voz "Eliminar (o borrar) todos los proyectos.".
+              Finalmente, todas las acciones se pueden ejecutar mediante comandos de voz, por ejemplo si quisieramos visualizar un proyecto
+              tendríamos que decir "Visualizar el proyecto 1", y visualizariamos el proyecto con ID 1. La estructura de estos comandos es "Acción" el proyecto "ID".') }}
+              </div>
+        </div>
+      </div>
+    </div>
+
+    <!--Modal para la acción View -->
+    <div class="modal fade" id="modalView" aria-hidden="true" aria-labelledby="modalView" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="modalViewLabel">{{ gettext('Acción View') }}</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            {{ gettext('Una vez que el proyecto este ejecutado podremos realizar la acción "View". Si le damos al botón este nos llevará a la pestaña de resultados dónde
+            aparecerán los resultados y gráficas de explicabilidad de nuestro proyecto.') }}
+
+            <br>
+            <br>
+              <figure class="text-center">
+                <img src="../static/assets/img/tutorialMisProyectos/vistaResultados.png" alt="Acción View" title="Imagen 1" class="img-fluid">
+                <figcaption>{{ gettext('Imagen 1: Vista de resultados del proyecto') }}</figcaption>
+              </figure>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-primary" data-bs-target="#modalGuia" data-bs-toggle="modal">{{ gettext('Volver') }}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--Modal para la acción Start-->
+    <div class="modal fade" id="modalStart" aria-hidden="true" aria-labelledby="modalStart" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="modalStartLabel">{{ gettext('Acción Start') }}</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              {{ gettext('Cuando pulsemos el botón "Start", empezará la ejecución del proyecto. Lo primero que vemos es que el status cambia de "Not started" a "Running". Además
+            se puede visualizar el progreso del proyecto si le damos al icono que se muestra en la imagen 1. En este icono aparecerán todos los proyectos que estemos ejecutando,
+            incluso si cerramos sesión o salimos del navegador.') }}
+              <br>
+              <br>
+              <figure class="text-center">
+                <img src="../static/assets/img/tutorialMisProyectos/iconoCarga.png" alt="Acción Start" title="Imagen 1" class="img-fluid">
+                <figcaption>{{ gettext('Imagen 1: Icono carga') }}</figcaption>
+              </figure>
+
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-primary" data-bs-target="#modalGuia" data-bs-toggle="modal">{{ gettext('Volver') }}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<!--Modal para la acción Copy-->
+    <div class="modal fade" id="modalCopy" aria-hidden="true" aria-labelledby="modalCopy" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="modalCopyLabel">{{ gettext('Acción Copy') }}</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            {{ gettext('Con está acción lo que podrás hacer es crear un proyecto nuevo con la misma configuración que el proyecto al que le has dado a "Copy". Esta acción
+            es muy útil si lo que quieres es cambiar una variable o el algoritmo del proyecto, y no quieres hacer el proyecto desde 0.') }}
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-primary" data-bs-target="#modalGuia" data-bs-toggle="modal">{{ gettext('Volver') }}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<!--Modal para la acción Download-->
+    <div class="modal fade" id="modalDownload" aria-hidden="true" aria-labelledby="modalDownload" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="modalDownloadLabel">{{ gettext('Acción Download') }}</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              {{ gettext('Por último, lo que hace está acción es descargarte un zip que contiene los siguientes elementos:') }}
+              <ul>
+                  <li>
+                      {{ gettext('Modelo: El modelo que se ha generado al ejecutar el proyecto. Es importante saber que el modelo es de H2O por lo que se guarda en formato MOJO.
+                  Para más información visitar la página de ') }}<a href="https://docs.h2o.ai/h2o/latest-stable/h2o-docs/mojo-quickstart.html", target="_blank">{{ gettext('H2O') }}</a></li>
+                  <li>
+                      {{ gettext('X-Model-Metrics-X-X.csv: Archivo csv que contiene las métricas del modelo. En caso de que el modelo sea de clasificación incluye:') }}
+                    <ul>
+                        <li>{{ gettext('Exactitud') }}</li>
+                        <li>{{ gettext('Sensibilidad') }}</li>
+                        <li>{{ gettext('Precisión') }}</li>
+                        <li>{{ gettext('Puntuación F1') }}</li>
+                        <li>{{ gettext('Especificidad') }}</li>
+                        <li>{{ gettext('NPV') }}</li>
+                    </ul>
+                   {{ gettext('En caso de que el modelo sea de regresión incluye:') }}
+                      <ul>
+                          <li>MAE</li>
+                          <li>MAPE</li>
+                          <li>MSE</li>
+                          <li>RMSE</li>
+                          <li>R2</li>
+                      </ul>
+                  </li>
+                  <li>{{ gettext('X-Model-Predictions-X-X.csv: Archivo csv que contiene las columnas que se han seleccionado, más una columna adicional con la predicción realizada por el modelo.') }}</li>
+                  <li>{{ gettext('Gráficas: Por último, también incluye todas las gráficas que se han generado para el problema. Hay que tener en cuenta que dependiendo del algoritmo y el tipo de problema se pueden generar unas gráficas u otras.') }}</li>
+              </ul>
+
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-primary" data-bs-target="#modalGuia" data-bs-toggle="modal">{{ gettext('Volver') }}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+</body>
+</html>

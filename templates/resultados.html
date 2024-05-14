@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html data-bs-theme="light" lang="es-es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>{{ gettext('Resultados') }}</title>
+    <link rel="icon" type="image/x-icon" href="./static/assets/img/icono.png">
+    <link rel="stylesheet" href="static/assets/bootstrap/css/bootstrapHome.min.css?h=cd822b7fd22c8a95a68470c795adea69">
+    <link rel="stylesheet" href="static/assets/fonts/line-awesome.min.css?h=d98553506d4393860db8a633e4842ead">
+    <link rel="stylesheet" href="static/assets/css/misProyectos.css?h=3c0b206e0d24c0c015cdc6975c8ec5e1">
+    <link rel="stylesheet" href="static/assets/css/select.css?h=a8f48a84b056f5db258f00389f001817">
+    <link rel="stylesheet" href="static/assets/css/styles.css?h=13d1606d53e127f94edece921d5dd45a">
+    <link rel="stylesheet" href="static/assets/css/results.css">
+    <link rel="stylesheet" href="static/assets/css/estilosGrafico.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.8.0/d3.min.js"></script>
+    <script src="../static/assets/js/jquery.twbsPagination.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.sandbox.min.js" integrity="sha512-NNuF+svYnI7fHo2z2hZWxFjgZTBhXUQRKeLZcIHhN0WJ8i7lhR90ujrWD+LFlAwnMQXoNHaQW0+CwKy9E4BWog==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js" integrity="sha512-BbrZ76UNZq5BhH7LL7pn9A4TKQpQeNCHOo65/akfelcIBbcVvYWOFQKPXIrykE3qZxYjmDX573oa4Ywsc7rpTw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" integrity="sha512-q+4liFwdPC/bNdhUpZx6aXDx/h77yEQtn4I1slHydcbZK34nLaR3cAeYSJshoxIOq3mjEf7xJE8YWIUHMn+oCQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf_viewer.min.js" integrity="sha512-r/1hgDCXmxicFJ66QCjMCFl0dEhTBu7kYqoef3OrdHbqrnyhp1V/GhyWQg8Gto8412MUqU8AbMSpc5TLbRURhQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf_viewer.min.css" integrity="sha512-tze+o/xG0w3yxxE8xe32piisVvI/LfcEuf6LW7lFLUxhio2SfFQ9mQ0TqB0avvonmxUXT7/l8+fnWkR03u85fQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="static/assets/css/cssCabecera.css">
+    <script src="../static/assets/js/resultados.js"></script>
+    <script src="../static/assets/js/graficoArbol.js"></script>
+    <script src="../static/assets/js/graficoArbol2.js"></script>
+    <script src="../static/assets/js/javascriptCabecera.js"></script>
+</head>
+
+<body>
+<input type="hidden" id="idioma" value="{{ current_language }}" />
+    <script>
+        $(document).ready(function() {
+            let jsonArbol={{tree_data | tojson|safe}};
+            grafico(jsonArbol);
+            grafico2(jsonArbol)
+            prepararBoton();
+        });
+    </script>
+    <header class="navbar navbar-expand-lg bg-body px-4 align-items-center pb-0 pt-2" style="background-color: darkgray !important;">
+        <div class="container-fluid mb-1 mb-lg-0 p-0">
+            <div class="d-flex flex-grow-1 flex-shrink-1 ">
+                <img src="../static/assets/img/icono.png" style="width: 33px;height: 33px;" />
+                <p class="mt-1 ms-2"><strong>InsightForge</strong></p>
+            </div>
+                <div class="justify-content-end">
+            <button data-bs-toggle="collapse" class="navbar-toggler " data-bs-target="#navcol-1">
+                <span class="visually-hidden">Toggle navigation</span>
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" id="navcol-1" style="background-color: darkgray;">
+            <nav>
+                <ul class="border-0 mx-auto list-unstyled" id="my-nav">
+                    <li class="nav-item my-2 my-lg-0" role="presentation"><a class="nav-link text-dark" role="tab" href="/goIndex">{{ gettext('Home') }}</a></li>
+                    {% if loged %}
+                      <li class="nav-item disabled my-2 my-lg-0" role="presentation"><a class="nav-link text-dark" role="tab" href="/goMisProyectos" aria-disabled="true">{{ gettext('Mis Proyectos') }}</a></li>
+                    {% else %}
+                      <li class="nav-item disabled my-2 my-lg-0" role="presentation"><a class="nav-link disabled" role="tab" href="/goMisProyectos" aria-disabled="true">{{ gettext('Mis Proyectos') }}</a></li>
+                    {% endif %}
+                    {% if loged %}
+                       <li class="nav-item my-2 my-lg-0" role="presentation"><a class="nav-link text-dark" role="tab" href="/goCrearProyecto">{{ gettext('Crear Proyecto') }}</a></li>
+                    {% else %}
+                        <li class="nav-item my-2 my-lg-0" role="presentation"><a class="nav-link disabled" role="tab" href="/goCrearProyecto">{{ gettext('Crear Proyecto') }}</a></li>
+                    {% endif %}
+                        <li class="nav-item my-2 my-lg-0" role="presentation"><a class="nav-link active" role="tab" href="/goResultado"><strong>{{ gettext('Resultados') }}</strong></a></li>
+                </ul>
+            </nav>
+            <div class="d-flex flex-grow-1 flex-shrink-1 justify-content-end">
+                <ul class="navbar-nav me-2">
+                   <li class="nav-item"></li>
+                   <li class="nav-item"></li>
+                   <li class="nav-item"></li>
+                   <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                {{ LANGUAGES[current_language] }}
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="languageDropdown">
+                                {% for lang_code, lang_name in LANGUAGES.items() %}
+                                <li><a class="dropdown-item" href="{{ url_for('set_language', lang=lang_code) }}">{{ lang_name }}</a></li>
+                                {% endfor %}
+                            </ul>
+                   </li>
+                </ul>
+                {% if loged %}
+
+                   <a class="ms-2" href="/goLogout" style="align-items: end;float: right;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" style="font-size: 36px;">
+                      <path d="M8.51428 20H4.51428C3.40971 20 2.51428 19.1046 2.51428 18V6C2.51428 4.89543 3.40971 4 4.51428 4H8.51428V6H4.51428V18H8.51428V20Z" fill="currentColor"></path>
+                      <path d="M13.8418 17.385L15.262 15.9768L11.3428 12.0242L20.4857 12.0242C21.038 12.0242 21.4857 11.5765 21.4857 11.0242C21.4857 10.4719 21.038 10.0242 20.4857 10.0242L11.3236 10.0242L15.304 6.0774L13.8958 4.6572L7.5049 10.9941L13.8418 17.385Z" fill="currentColor"></path>
+                      </svg>
+                   </a>
+                {% else %}
+                   <a class="ms-2" href="/goLogin" style="align-items: end;float: right;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" style="font-size: 36px;">
+                    <path d="M15.4857 20H19.4857C20.5903 20 21.4857 19.1046 21.4857 18V6C21.4857 4.89543 20.5903 4 19.4857 4H15.4857V6H19.4857V18H15.4857V20Z" fill="currentColor"></path>
+                    <path d="M10.1582 17.385L8.73801 15.9768L12.6572 12.0242L3.51428 12.0242C2.96199 12.0242 2.51428 11.5765 2.51428 11.0242C2.51429 10.4719 2.962 10.0242 3.51429 10.0242L12.6765 10.0242L8.69599 6.0774L10.1042 4.6572L16.4951 10.9941L10.1582 17.385Z" fill="currentColor"></path>
+                    </svg>
+                   </a>
+                {% endif %}
+            </div>
+        </div>
+        </div>
+    </header>
+    <input type="hidden" value="{{ datos.rutaImagenes }}" id="rutaImagen">
+    <input type="hidden" value="{{ tipoPresentacion }}" id="tipoPresentacion">
+    <input type="hidden" value="{{ problema }}" id="problema">
+    <div class="container info">
+        <div class="row">
+            <div class="col-12">
+                <h1>{{ gettext('Información del proyecto') }}</h1>
+            </div>
+        </div>
+        <div class="row segundaFila">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col">
+                        <h5>{{ gettext('Nombre proyecto:') }} {{ datos.nombreProyecto }}</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h5>{{ gettext('Fecha:') }} {{ datos.fecha }}</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h5>{{ gettext('Columna clase:') }} {{ datos.clase }}</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col">
+                        <h5>{{ gettext('Tipo problema:') }} {{ datos.problema }}</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h5>{{ gettext('Clase positiva:') }} {{ datos.clasePositiva }}</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h5>{{ gettext('Tipo validación:') }} {{ datos.validacion }}</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container info2">
+    <div class="row">
+        <div class="col-12 mensajeGrafica">
+            <h1>{{ gettext('Gráficas y predicciones') }}</h1>
+        </div>
+    </div>
+    <div class="pestañas">
+        <ul class="nav nav-tabs" role="tablist">
+            {% if tipoPresentacion == 1 %}
+                <li class="nav-item" role="presentation"><a class="nav-link active" role="tab" data-bs-toggle="tab" href="#tab-1">{{ gettext('Validación') }}</a></li>
+                <li class="nav-item" role="presentation" data-bs-toggle="tooltip" data-bs-placement="top" title="Variable Importance"><a class="nav-link" role="tab" data-bs-toggle="tab" href="#tab-2">V.I.</a></li>
+                <li class="nav-item" role="presentation" data-bs-toggle="tooltip" data-bs-placement="top" title="Learning Curve"><a class="nav-link" role="tab" data-bs-toggle="tab" href="#tab-3">L.C.</a></li>
+                <li class="nav-item" role="presentation" data-bs-toggle="tooltip" data-bs-placement="top" title="Partial Dependence Plot"><a class="nav-link" role="tab" data-bs-toggle="tab" href="#tab-4">P.D.</a></li>
+                <li class="nav-item" role="presentation" data-bs-toggle="tooltip" data-bs-placement="top" title="Individual Conditional Expectation"><a class="nav-link" role="tab" data-bs-toggle="tab" href="#tab-5">I.C.E.</a></li>
+                <li class="nav-item" role="presentation" data-bs-toggle="tooltip" data-bs-placement="top" title="SHapley Additive exPlanations summary"><a class="nav-link" role="tab" data-bs-toggle="tab" href="#tab-6">S.H.A.P.</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-bs-toggle="tab" href="#tab-7">{{ gettext('Árbol de Decisión I') }}</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-bs-toggle="tab" href="#tab-8">{{ gettext('Árbol de Decisión II') }}</a></li>
+                <li class="nav-item" role="presentation" data-bs-toggle="tooltip" data-bs-placement="top" title="Model Correlation"><a class="nav-link" role="tab" data-bs-toggle="tab" href="#tab-9">M.C.</a></li>
+                <li class="nav-item" role="presentation" data-bs-toggle="tooltip" data-bs-placement="top" title="Variable Importance Heatmap"><a class="nav-link" role="tab" data-bs-toggle="tab" href="#tab-10">V.I.H.</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-bs-toggle="tab" href="#tab-11">{{ gettext('Análisis error') }}</a></li>
+            {% elif tipoPresentacion == 2 %}
+                <li class="nav-item" role="presentation"><a class="nav-link active" role="tab" data-bs-toggle="tab" href="#tab-1">{{ gettext('Validación') }}</a></li>
+                <li class="nav-item" role="presentation" data-bs-toggle="tooltip" data-bs-placement="top" title="Variable Importance"><a class="nav-link" role="tab" data-bs-toggle="tab" href="#tab-2" >V.I.</a></li>
+                <li class="nav-item" role="presentation" data-bs-toggle="tooltip" data-bs-placement="top" title="Learning Curve"><a class="nav-link" role="tab" data-bs-toggle="tab" href="#tab-3">L.C.</a></li>
+                <li class="nav-item" role="presentation" data-bs-toggle="tooltip" data-bs-placement="top" title="Partial Dependence Plot"><a class="nav-link" role="tab" data-bs-toggle="tab" href="#tab-4">P.D.</a></li>
+                <li class="nav-item" role="presentation" data-bs-toggle="tooltip" data-bs-placement="top" title="Individual Conditional Expectation"><a class="nav-link" role="tab" data-bs-toggle="tab" href="#tab-5">I.C.E.</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-bs-toggle="tab" href="#tab-6">{{ gettext('Árbol de Decisión I') }}</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-bs-toggle="tab" href="#tab-7">{{ gettext('Árbol de Decisión II') }}</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-bs-toggle="tab" href="#tab-8">{{ gettext('Nomograma') }}</a></li>
+                <li class="nav-item" role="presentation" data-bs-toggle="tooltip" data-bs-placement="top" title="Model Correlation"><a class="nav-link" role="tab" data-bs-toggle="tab" href="#tab-9">M.C.</a></li>
+                <li class="nav-item" role="presentation" data-bs-toggle="tooltip" data-bs-placement="top" title="Variable Importance Heatmap"><a class="nav-link" role="tab" data-bs-toggle="tab" href="#tab-10">V.I.H.</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-bs-toggle="tab" href="#tab-11">{{ gettext('Análisis error') }}</a></li>
+            {% elif tipoPresentacion == 3 %}
+                <li class="nav-item" role="presentation"><a class="nav-link active" role="tab" data-bs-toggle="tab" href="#tab-1">{{ gettext('Validación') }}</a></li>
+                <li class="nav-item" role="presentation" data-bs-toggle="tooltip" data-bs-placement="top" title="Variable Importance"><a class="nav-link" role="tab" data-bs-toggle="tab" href="#tab-2" title="Variable Importance">V.I.</a></li>
+                <li class="nav-item" role="presentation" data-bs-toggle="tooltip" data-bs-placement="top" title="Learning Curve"><a class="nav-link" role="tab" data-bs-toggle="tab" href="#tab-3">L.C.</a></li>
+                <li class="nav-item" role="presentation" data-bs-toggle="tooltip" data-bs-placement="top" title="Partial Dependence Plot"><a class="nav-link" role="tab" data-bs-toggle="tab" href="#tab-4">P.D.</a></li>
+                <li class="nav-item" role="presentation" data-bs-toggle="tooltip" data-bs-placement="top" title="SHapley Additive exPlanations summary"><a class="nav-link" role="tab" data-bs-toggle="tab" href="#tab-5">S.H.A.P.</a></li>
+                <li class="nav-item" role="presentation" data-bs-toggle="tooltip" data-bs-placement="top" title="Individual Conditional Expectation"><a class="nav-link" role="tab" data-bs-toggle="tab" href="#tab-6">I.C.E.</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-bs-toggle="tab" href="#tab-7">{{ gettext('Árbol de Decisión I') }}</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-bs-toggle="tab" href="#tab-8">{{ gettext('Árbol de Decisión II') }}</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-bs-toggle="tab" href="#tab-9">{{ gettext('Análisis error') }}</a></li>
+            {% elif  tipoPresentacion == 4 %}
+                <li class="nav-item" role="presentation"><a class="nav-link active" role="tab" data-bs-toggle="tab" href="#tab-1">{{ gettext('Validación') }}</a></li>
+                <li class="nav-item" role="presentation" data-bs-toggle="tooltip" data-bs-placement="top" title="Variable Importance"><a class="nav-link" role="tab" data-bs-toggle="tab" href="#tab-2" title="Variable Importance">V.I.</a></li>
+                <li class="nav-item" role="presentation" data-bs-toggle="tooltip" data-bs-placement="top" title="Learning Curve"><a class="nav-link" role="tab" data-bs-toggle="tab" href="#tab-3">L.C.</a></li>
+                <li class="nav-item" role="presentation" data-bs-toggle="tooltip" data-bs-placement="top" title="Partial Dependence Plot"><a class="nav-link" role="tab" data-bs-toggle="tab" href="#tab-4">P.D.</a></li>
+                <li class="nav-item" role="presentation" data-bs-toggle="tooltip" data-bs-placement="top" title="Individual Conditional Expectation"><a class="nav-link" role="tab" data-bs-toggle="tab" href="#tab-5">I.C.E.</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-bs-toggle="tab" href="#tab-6">{{ gettext('Árbol de Decisión I') }}</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-bs-toggle="tab" href="#tab-7">{{ gettext('Árbol de Decisión II') }}</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-bs-toggle="tab" href="#tab-8">{{ gettext('Nomograma') }}</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-bs-toggle="tab" href="#tab-9">{{ gettext('Análisis error') }}</a></li>
+            {% endif %}
+
+        </ul>
+        <input type="hidden" value="{{ id_project }}" name="id_project">
+        <div class="tab-content">
+            <div class="tab-pane active" role="tabpanel" id="tab-1">
+                <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        {% for key in metricas.keys() %}
+                            <th>{{ key }}</th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        {% for value in metricas.values() %}
+                            <td>{{ value }}</td>
+                        {% endfor %}
+                    </tr>
+                    
+                </tbody>
+            </table>
+            {% if mensajeMAPE %}
+                <p>{{ gettext('Si observa que el valor del MAPE es demasiado alto, no se preocupe seguramente los valores utilizados para calcular dicha métricas son
+                muy pequeños, es decir, menores que 1 acercándose al 0.') }}</p>
+            {% endif %}
+                <a role="button" class="btn btn-primary pull-right" href="{{ datos.rutaZip }}">{{ gettext('Descargar predicciones y métricas.') }}</a>
+            </div>
+            <div class="tab-pane" role="tabpanel" id="tab-2">
+                <div class="contenedor-flex">
+                    <canvas id="pdf-viewer-vi"></canvas>
+                </div>
+            </div>
+            <div class="tab-pane" role="tabpanel" id="tab-3">
+                <div class="contenedor-flex">
+                    <canvas id="pdf-viewer-lc"></canvas>
+                </div>
+            </div>
+        <div class="tab-pane" role="tabpanel" id="tab-4">
+
+            <div id="pdf-container-dependence"></div>
+            <!-- Contenedor de Paginación para 'dependence' -->
+            <nav>
+                <ul id="pagination-dependence" class="pagination"></ul>
+            </nav>
+        </div>
+            <div class="tab-pane" role="tabpanel" id="tab-5">
+                {% if tipoPresentacion == 2 %}
+                    <div id="pdf-container-ice"></div>
+
+                    <nav>
+                        <ul id="pagination-ice" class="pagination"></ul>
+                    </nav>
+
+                {% elif tipoPresentacion == 4 %}
+                    <div id="pdf-container-ice"></div>
+
+                    <nav>
+                        <ul id="pagination-ice" class="pagination"></ul>
+                    </nav>
+                {% elif tipoPresentacion == 1 %}
+                    <div id="pdf-container-ice"></div>
+
+                    <nav>
+                        <ul id="pagination-ice" class="pagination"></ul>
+                    </nav>
+                {% elif tipoPresentacion == 3 %}
+                    {% if mensajeSHAP %}
+                        <p>{{ gettext('Se ha generado un modelo de árbol para poder generar está gráfica. Esto se debe a que el algoritmo seleccionado no puede generar dicha gráfica') }}</p>
+                    {% endif %}
+                    <div class="contenedor-flex">
+                        <canvas id="pdf-viewer-shap-3"></canvas>
+                    </div>
+                {% endif %}
+            </div>
+            <div class="tab-pane" role="tabpanel" id="tab-6">
+                {% if tipoPresentacion == 2 %}
+                    <div id="tree-container">
+                      <svg id="tree-svg" viewBox="0 0 960 500" preserveAspectRatio="xMinYMin meet"></svg>
+                    </div>
+                {% elif  tipoPresentacion == 4 %}
+                    <div id="tree-container">
+                      <svg id="tree-svg" viewBox="0 0 960 500" preserveAspectRatio="xMinYMin meet"></svg>
+                    </div>
+                {% elif tipoPresentacion == 1 %}
+                    {% if mensajeSHAP %}
+                        <p>{{ gettext('Se ha generado un modelo de árbol para poder generar está gráfica. Esto se debe a que el algoritmo seleccionado no puede generar dicha gráfica') }}</p>
+                    {% endif %}
+                    <div class="contenedor-flex">
+                        <canvas id="pdf-viewer-shap-1"></canvas>
+                    </div>
+                {% elif tipoPresentacion == 3 %}
+                    <div id="pdf-container-ice"></div>
+                    <nav>
+                        <ul id="pagination-ice" class="pagination"></ul>
+                    </nav>
+                {% endif %}
+            </div>
+            <div class="tab-pane" role="tabpanel" id="tab-7">
+                {% if tipoPresentacion == 2 %}
+                    <div class="row mt-4">
+                        <div class="col-10">
+                            <div id="tree-container-arbol2"></div>
+                        </div>
+                        <div class="col-2">
+                             <a id="descargarArbol" role="button" class="btn btn-primary pull-right">{{ gettext('Descargar Imagen') }}</a>
+                        </div>
+                    </div>
+                {% elif  tipoPresentacion == 4 %}
+                    <div class="row mt-4">
+                        <div class="col-10">
+                            <div id="tree-container-arbol2"></div>
+                        </div>
+                        <div class="col-2">
+                             <a id="descargarArbol" role="button" class="btn btn-primary pull-right">{{ gettext('Descargar Imagen') }}</a>
+                        </div>
+                    </div>
+                {% elif tipoPresentacion == 1 %}
+                    <div id="tree-container">
+                      <svg id="tree-svg" viewBox="0 0 960 500" preserveAspectRatio="xMinYMin meet"></svg>
+                    </div>
+                {% elif tipoPresentacion == 3 %}
+                    <div id="tree-container">
+                      <svg id="tree-svg" viewBox="0 0 960 500" preserveAspectRatio="xMinYMin meet"></svg>
+                    </div>
+                {% endif %}
+            </div>
+            <div class="tab-pane" role="tabpanel" id="tab-8">
+                {% if tipoPresentacion == 2 %}
+                    <div id="pdf-container-nomogram"></div>
+                    <!-- Contenedor de Paginación para 'nomogram' -->
+                    <nav>
+                        <ul id="pagination-nomogram" class="pagination"></ul>
+                    </nav>
+                {% elif  tipoPresentacion == 4 %}
+                    <div id="pdf-container-nomogram"></div>
+                    <!-- Contenedor de Paginación para 'nomogram' -->
+                    <nav>
+                        <ul id="pagination-nomogram" class="pagination"></ul>
+                    </nav>
+                {% elif tipoPresentacion == 1 %}
+                   <div class="row mt-4">
+                        <div class="col-10">
+                            <div id="tree-container-arbol2"></div>
+                        </div>
+                        <div class="col-2">
+                             <a id="descargarArbol" role="button" class="btn btn-primary pull-right">{{ gettext('Descargar Imagen') }}</a>
+                        </div>
+                    </div>
+                {% elif tipoPresentacion == 3 %}
+                    <div class="row mt-4">
+                        <div class="col-10">
+                            <div id="tree-container-arbol2"></div>
+                        </div>
+                        <div class="col-2">
+                            <a id="descargarArbol" role="button" class="btn btn-primary pull-right">{{ gettext('Descargar Imagen') }}</a>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+            <div class="tab-pane" role="tabpanel" id="tab-9">
+                {% if tipoPresentacion == 2 %}
+                    <div class="contenedor-flex">
+                        <canvas id="pdf-viewer-mc-2"></canvas>
+                    </div>
+                {% elif tipoPresentacion == 1 %}
+                    <div class="contenedor-flex">
+                        <canvas id="pdf-viewer-mc-1"></canvas>
+                    </div>
+                {% elif tipoPresentacion == 3 %}
+                    <div class="row mt-3">
+                      <div class="col-md-6">
+                        <p class="texto">{{ analisisError|replace('\n', '<br>')|safe }}</p>
+                        <span><strong>{{ gettext('El texto ha sido generado con GPT') }}</strong></span>
+                      </div>
+                      <div class="col-md-6">
+                        <canvas id="pdf-viewer-ar" class="img-fluid"></canvas>
+                      </div>
+                    </div>
+                {% elif tipoPresentacion == 4 %}
+                    <div class="row mt-3">
+                      <div class="col-md-8">
+                        <p class="texto">{{ analisisError|replace('\n', '<br>')|safe }}</p>
+                        <span><strong>{{ gettext('El texto ha sido generado con GPT') }}</strong></span>
+                      </div>
+                      <div class="col-md-4">
+                        <canvas id="pdf-viewer-ar" class="img-fluid"></canvas>
+                      </div>
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="tab-pane" role="tabpanel" id="tab-10">
+                {% if tipoPresentacion == 2 %}
+                    <div class="contenedor-flex">
+                        <canvas id="pdf-viewer-vih-2"></canvas>
+                    </div>
+                {% elif tipoPresentacion == 1 %}
+                 <div class="contenedor-flex">
+                    <canvas id="pdf-viewer-vih-1"></canvas>
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="tab-pane" role="tabpanel" id="tab-11">
+                <div class="row mt-3">
+                  <div class="col-md-8">
+                    <p class="texto">{{ analisisError|replace('\n', '<br>')|safe }}</p>
+                    <span><strong>{{ gettext('El texto ha sido generado con GPT') }}</strong></span>
+                  </div>
+                  <div class="col-md-4">
+                    <canvas id="pdf-viewer-ar" class="img-fluid"></canvas>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script src="static/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('[data-bs-toggle="tooltip"]').tooltip();
+        });
+    </script>
+</body>
+
+</html>

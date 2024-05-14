@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html data-bs-theme="light" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>{{ gettext('Recuperar contraseña') }}</title>
+    <link rel="icon" type="image/x-icon" href="./static/assets/img/icono.png">
+    <link rel="stylesheet" href="../static/assets/bootstrap/css/bootstrapLogin.min.css?h=d2583ee8ec2f1044947cb8b625ef9c8d">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&amp;display=swap">
+    <link rel="stylesheet" href="../static/assets/css/styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../static/assets/js/errores.js"></script>
+</head>
+
+<body style="display:flex; flex-direction:column; min-height:100vh;">
+<script type="text/javascript">
+        $(document).ready(function() {
+            var error1 = {{ existUser | tojson if existUser is defined else 'null' }};
+
+            if(error1){
+                var etiqueta = "#mensajeErrorRecuperar";
+                activarError(etiqueta)
+            }
+
+            var error2 = {{ usernameOk | tojson if usernameOk is defined else 'null' }};
+
+            if(error2){
+                var etiqueta = "#mensajeErrorRecuperar2";
+                activarError(etiqueta)
+            }
+        })
+    </script>
+
+
+    <div aria-live="polite" aria-atomic="true" class="position-relative">
+        <div class="toast-container position-absolute top-0 start-0 p-3">
+                <div class="toast align-items-center text-white bg-danger border-0 custom-toast" role="alert" aria-live="assertive" aria-atomic="true" id="mensajeErrorRecuperar">
+                    <div class="d-flex">
+                        <div class="toast-body">
+                            {{ gettext('El usuario introducido no existe.') }}
+                        </div>
+                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+            </div>
+
+            <div class="toast align-items-center text-white bg-danger border-0 custom-toast" role="alert" aria-live="assertive" aria-atomic="true" id="mensajeErrorRecuperar2">
+                    <div class="d-flex">
+                        <div class="toast-body">
+                            {{gettext('El nombre de usuario es necesario.')}}
+                        </div>
+                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <section class="py-5"  style="display: flex; justify-content: center; flex-direction: column;">
+        <div class="container py-0">
+            <div class="row mb-4 mb-lg-5">
+                <div class="col-md-8 col-xl-6 text-center mx-auto">
+                    <p class="fw-bold text-success mb-2" style="font-size:46px;">{{gettext('Recuperar Contraseña')}}</p>
+                </div>
+            </div>
+            <div class="row d-flex justify-content-center">
+                <div class="col-md-6 col-xl-4">
+                    <div class="card">
+                        <div class="card-body text-center d-flex flex-column align-items-center">
+                            <div class="bs-icon-xl bs-icon-circle bs-icon-primary shadow  bs-icon my-4 bi bi-lock-fill">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-lock-fill" viewBox="0 0 16 16">
+                                  <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2m3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2"/>
+                                </svg>
+                            </div>
+                            <form action="/mandarCorreoRecuperacion" method="post" data-bs-theme="light">
+                                    <div class="mb-3">
+                                        <div class="wave-group">
+                                            <input required="" type="text" class="input" name="username">
+                                            <span class="bar"></span>
+                                            <label class="label">
+                                              <span class="label-char" style="--index: 0">U</span>
+                                              <span class="label-char" style="--index: 1">s</span>
+                                              <span class="label-char" style="--index: 2">e</span>
+                                              <span class="label-char" style="--index: 3">r</span>
+                                              <span class="label-char" style="--index: 3">n</span>
+                                              <span class="label-char" style="--index: 3">a</span>
+                                              <span class="label-char" style="--index: 3">m</span>
+                                              <span class="label-char" style="--index: 3">e</span>
+                                            </label>
+                                          </div>
+                                    </div>
+                                <div class="mb-3"><button class="btn btn-primary shadow d-block w-100" type="submit">{{gettext('Enviar Correo')}}</button></div>
+                                <div class="mb-3"><a class="btn btn-primary shadow d-block w-100" href="/">{{gettext('Cancelar')}}</a></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="../static/assets/bootstrap/js/bootstrap.min.js?h=b4349cf7232e6b66621e089f2b9beee5"></script>
+    <script src="../static/assets/js/bold-and-bright.js?h=78569998362133b84a76614652f3624f"></script>
+</body>
+
+</html>

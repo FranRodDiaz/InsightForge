@@ -1,0 +1,39 @@
+site_name: TFG
+site_description: 'Trabajo Fin de Grado'
+site_author: 'Francesc Rodríguez Díaz'
+
+# Define the source dir for markdown files
+docs_dir: 'docs'
+
+# Define the build dir for the site
+site_dir: 'site'
+
+# Choose a theme (e.g., 'mkdocs', 'readthedocs', 'material')
+theme:
+  name: 'readthedocs'
+
+# Define the navigation structure
+nav:
+  - Home: index.md
+  - User Guide:
+    - Writing: user-guide/writing.md
+  - About:
+    - License: about/LICENSE.md
+    - Release Notes: about/release-notes.md
+
+# Extensions
+markdown_extensions:
+  - toc:
+      permalink: true
+  - tables
+  - admonition
+
+# Plugins (if any)
+plugins:
+  - search
+  - minify:
+      minify_html: true
+
+
+
+

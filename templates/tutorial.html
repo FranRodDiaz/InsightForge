@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="es-es" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Tutorial</title>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tom-select/2.2.2/css/tom-select.bootstrap5.min.css" integrity="sha512-mNN7o87hQqtNCCGWxFVdlVdaKF6d4S1wVMi3+ftJYnW572YIo0KPjK1Cns5SPlyCtKGp1Nu+z26MJUNXmpbjKA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="static/assets/bootstrap/css/bootstrapHome.min.css?h=cd822b7fd22c8a95a68470c795adea69">
+    <link rel="stylesheet" href="static/assets/css/misProyectos.css?h=3c0b206e0d24c0c015cdc6975c8ec5e1">
+    <link rel="stylesheet" href="static/assets/css/select.css?h=a8f48a84b056f5db258f00389f001817">
+    <link rel="stylesheet" href="static/assets/css/styles.css?h=13d1606d53e127f94edece921d5dd45a">
+</head>
+<body>
+    <!--Modal para la introducción-->
+    <div class="modal fade" id="modalIntroductorio" aria-hidden="true" aria-labelledby="modalIntroductorio" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="modalIntroductorioLabel">Tutorial</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            {{ gettext('A continuación, se muestra un tutorial de como crear un proyecto desde 0.') }}
+            <br>
+            {{ gettext('Por favor, pase a la siguiente página.') }}
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-primary" data-bs-target="#modalDataset" data-bs-toggle="modal">{{ gettext('Siguiente página') }}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal para seleccionar el dataset del proyecto -->
+    <div class="modal fade" id="modalDataset" aria-hidden="true" aria-labelledby="modalDataset" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="modalDatasetLabel">{{ gettext('Selección Dataset I') }}</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body overflow-auto">
+              {{ gettext('Lo primero que tenemos que hacer para crear un proyecto es presionar el botón "Seleccione su archivo", tal y como se muestra en la imagen 1. El tipo de archivo que se acepta es el .csv.') }}
+                <br>
+                <br>
+                <figure class="text-center">
+                    <img src="../static/assets/img/tutorial/botonCargarArchivo.png" alt="Botón de selección" title="Imagen 1" class="img-fluid">
+                    <figcaption>{{ gettext('Imagen 1: Botón de selección') }}</figcaption>
+                </figure>
+                <br>
+                {{ gettext('Una vez se ha presionado el botón, lo siguiente es seleccionar el archivo a cargar. Es importante que el nombre de las columnas no contengan ninguna coma.') }}
+                <br>
+                <br>
+                <figure class="text-center">
+                    <img src="../static/assets/img/tutorial/seleccionDataset.png" alt="Selección dataset" title="Imagen 2"  class="img-fluid" style="max-width: 400px;">
+                    <figcaption>{{ gettext('Imagen 2: Selección conjunto de datos') }}</figcaption>
+                </figure>
+                {{ gettext('Por último, se nos actualizará la vista habilitando todos los campos que antes estaban desactivados.') }}
+                <br>
+                <br>
+                <figure class="text-center">
+                    <img src="../static/assets/img/tutorial/DatasetCargado.png" alt="Actualización vista" title="Imagen 3"  class="img-fluid" style="max-width: 400px;">
+                    <figcaption>{{ gettext('Imagen 3: Vista actualizada') }}</figcaption>
+                </figure>
+
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-primary" data-bs-target="#modalIntroductorio" data-bs-toggle="modal">{{ gettext('Página anterior') }}</button>
+            <button class="btn btn-primary" data-bs-target="#modalDataset2" data-bs-toggle="modal">{{ gettext('Página siguiente') }}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="modalDataset2" aria-hidden="true" aria-labelledby="modalDataset2" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="modalDataset2Label">{{ gettext('Selección Dataset II') }}</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              {{ gettext('Además, también se puede cargar un conjunto de datos desde el elemento que se indica en la imagen 4.') }}
+              <br>
+              <br>
+              <figure class="text-center">
+                  <img src="../static/assets/img/tutorial/seleccionDataset2.png" alt="Otra forma de cargar un dataset" title="Imagen 4"  class="img-fluid">
+                  <figcaption>{{ gettext('Imagen 4: Carga conjunto de datos') }}</figcaption>
+              </figure>
+              {{ gettext('Si pulsamos en el elemento, nos aparecerán los conjuntos de datos que se han cargado con anterioridad.') }}
+              <br>
+              <br>
+              <figure class="text-center">
+                  <img src="../static/assets/img/tutorial/conjuntosDisponibles.png" alt="Conjuntos cargados anteriormente" title="Imagen 5"  class="img-fluid">
+                  <figcaption>{{ gettext('Imagen 5: Conjuntos disponibles') }}</figcaption>
+              </figure>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-primary" data-bs-target="#modalDataset" data-bs-toggle="modal">{{ gettext('Página anterior') }}</button>
+            <button class="btn btn-primary" data-bs-target="#modalNombre" data-bs-toggle="modal">{{ gettext('Página siguiente') }}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="modal fade" id="modalNombre" aria-hidden="true" aria-labelledby="modalNombre" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="modalNombreLabel">{{ gettext('Nombre del Proyecto') }}</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            {{ gettext('Cuando hemos seleccionado el conjunto de datos con el que vamos a trabajar, lo siguiente que haríamos sería introducir el nombre del proyecto.') }}
+            <br>
+            <br>
+            {{ gettext('Si nos fijamos en el apartado que pone "Nombre del proyecto" podremos ver un campo de texto y 2 iconos. En el campo de texto es donde deberemos introducir el nombre del proyecto.') }}
+            <br>
+            <br>
+            <figure class="text-center">
+                  <img src="../static/assets/img/tutorial/introducirNombre.png" alt="Introducir nombre" title="Imagen 6"  class="img-fluid">
+                  <figcaption>{{ gettext('Imagen 6: Campo de texto para introducir el nombre del proyecto') }}</figcaption>
+            </figure>
+            {{ gettext(' El icono del micrófono sirve para activar un reconocimiento de voz que a partir de una determinada frase que contendrá las características del proyecto, se rellenarán los campos automáticamente con los datos dichos.
+            Si observa que al activarlo no sé rellena nada, es que o no le ha entendido o ha dicho una frase distinta a la determinada.') }}
+            <br>
+            <br>
+            <figure class="text-center">
+                <img src="../static/assets/img/tutorial/icono1.png" alt="Icono micrófono" title="Imagen 7"  class="img-fluid">
+                <figcaption>{{ gettext('Imagen 7: Icono micrófono') }}</figcaption>
+            </figure>
+            {{ gettext('El último icono sirve para abrir este tutorial que le ayudará a crear un proyecto.') }}
+            <br>
+            <br>
+            <figure class="text-center">
+              <img src="../static/assets/img/tutorial/icono2.png" alt="Icono interrogación" title="Imagen 8"  class="img-fluid">
+              <figcaption>{{ gettext('Imagen 8: Icono interrogación') }}</figcaption>
+            </figure>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-primary" data-bs-target="#modalDataset2" data-bs-toggle="modal">{{ gettext('Página anterior') }}</button>
+            <button class="btn btn-primary" data-bs-target="#modalColumnaClase" data-bs-toggle="modal">{{ gettext('Página siguiente') }}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="modalColumnaClase" aria-hidden="true" aria-labelledby="modalColumnaClase" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="modalColumnaClaseLabel">{{ gettext('Columna Clase') }}</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body overflow-auto">
+            {{ gettext('Abajo del apartado anterior, nos encontramos la sección donde seleccionaremos la columna objetivo, el tipo de problema y la clase positiva (en caso de que la tenga) de nuestro problema.') }}
+            <br>
+            <br>
+            {{ gettext('Primero tendremos que seleccionar la columna clase. Está se selecciona en el último elemento de la sección como se muestra en la imagen 9.') }}
+            <br>
+            <br>
+            <figure class="text-center">
+              <img src="../static/assets/img/tutorial/SeleccionColumnaClase.png" alt="Selección columna clase" title="Imagen 9"  class="img-fluid">
+              <figcaption>{{ gettext('Imagen 9: Elemento para seleccionar la columna clase') }}</figcaption>
+            </figure>
+            {{ gettext('Cuando seleccionemos la columna objetivo, se nos seleccionará automáticamente el tipo de problema en función del tipo de variable que se haya seleccionado como clase pero también se puede seleccionar a mano.
+            Para seleccionar el tipo de problema le damos al primer elemento de la sección como muestra la imagen 10.') }}
+            <br>
+            <br>
+            <figure class="text-center">
+              <img src="../static/assets/img/tutorial/seleccionTipoProblema.png" alt="Selección tipo problema" title="Imagen 10"  class="img-fluid">
+              <figcaption>{{ gettext('Imagen 10: Elemento para seleccionar el tipo de problema') }}</figcaption>
+            </figure>
+            {{ gettext('Por último, podremos seleccionar una clase positiva en caso de que el problema sea de clasificación. Para seleccionarla nos tenemos que dirigir al segundo elemento de la sección como muestra la imagen 11.') }}
+            <br>
+            <br>
+            <figure class="text-center">
+              <img src="../static/assets/img/tutorial/seleccionClasePositiva.png" alt="Selección clase positiva" title="Imagen 11"  class="img-fluid">
+              <figcaption>{{ gettext('Imagen 11: Elemento para seleccionar la clase positiva') }}</figcaption>
+            </figure>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-primary" data-bs-target="#modalNombre" data-bs-toggle="modal">{{ gettext('Página anterior') }}</button>
+            <button class="btn btn-primary" data-bs-target="#modalAlgoritmos" data-bs-toggle="modal">{{ gettext('Página siguiente') }}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="modalAlgoritmos" aria-hidden="true" aria-labelledby="modalAlgoritmos" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="modalAlgoritmosLabel">{{ gettext('Algoritmos') }}</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body overflow-auto">
+              {{ gettext('En la sección "Algoritmos" podremos observar los diferentes algoritmos que la aplicación soporta. Una vez que cargamos el dataset está sección se ve como en la imagen 12.') }}
+              <br>
+              <br>
+              <figure class="text-center">
+                  <img src="../static/assets/img/tutorial/algoritmos1.png" alt="Algoritmos" title="Imagen 12"  class="img-fluid">
+                  <figcaption>{{ gettext('Imagen 12: Algoritmos que soporta la aplicación') }}</figcaption>
+              </figure>
+              {{ gettext('Cuando seleccionamos la columna clase, entonces podremos seleccionar el algoritmo. Además dichos algoritmos se filtran automáticamente en función del tipo de problema como se observa en las imágenes 13 y 14.') }}
+              <br>
+              <br>
+              <figure class="text-center">
+                <img src="../static/assets/img/tutorial/algoritmosClasificacion.png" alt="Algoritmos clasificación" title="Imagen 13"  class="img-fluid">
+                <figcaption>{{ gettext('Imagen 13: Algoritmos para Clasificación') }}</figcaption>
+              </figure>
+              <figure class="text-center">
+                <img src="../static/assets/img/tutorial/algoritmosRegresion.png" alt="Algoritmos regresión" title="Imagen 14"  class="img-fluid">
+                <figcaption>{{ gettext('Imagen 14: Algoritmos para Regresión') }}</figcaption>
+              </figure>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-primary" data-bs-target="#modalColumnaClase" data-bs-toggle="modal">{{ gettext('Página anterior') }}</button>
+            <button class="btn btn-primary" data-bs-target="#modalVariablesValidacion" data-bs-toggle="modal">{{ gettext('Página siguiente') }}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="modalVariablesValidacion" aria-hidden="true" aria-labelledby="modalVariablesValidacion" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="modalVariablesValidacionLabel">{{ gettext('Variables y Validación I') }}</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body overflow-auto">
+              {{ gettext('Lo último que tendríamos que configurar para poder crear nuestro proyecto, es seleccionar el tipo de validación y las variables externas y de control que queremos. Un aspecto importante es que si ya hemos seleccionado una variable como control, no podremos seleccionar la misma como externa o columna clase.
+              Esto también pasa si seleccionamos una variable como externa o columna clase.') }}
+              <br>
+              <br>
+              {{ gettext('Para seleccionar las variables de control lo único que tenemos que hacer es pulsar el botón que se resalta en la imagen 15. Abajo del botón se muestra el número de variables que se ha seleccionado frente al número total de variables que se puede seleccionar.') }}
+              <br>
+              <br>
+              <figure class="text-center">
+                <img src="../static/assets/img/tutorial/variablesControl.png" alt="Botón variables de control" title="Imagen 15"  class="img-fluid">
+                <figcaption>{{ gettext('Imagen 15: Botón para seleccionar variables de control') }}</figcaption>
+              </figure>
+              {{ gettext('Para seleccionar las variables externas pulsamos el botón que se resalta en la imagen 16. Al igual que antes, también se muestra la información del número de variables que hemos seleccionado frente al que podemos seleccionar.') }}
+              <br>
+              <br>
+              <figure class="text-center">
+                <img src="../static/assets/img/tutorial/variablesExternas.png" alt="Botón variables externas" title="Imagen 16"  class="img-fluid">
+                <figcaption>{{ gettext('Imagen 16: Botón para seleccionar variables externas') }}</figcaption>
+              </figure>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-primary" data-bs-target="#modalAlgoritmos" data-bs-toggle="modal">{{ gettext('Página anterior') }}</button>
+            <button class="btn btn-primary" data-bs-target="#modalVariablesValidacion2" data-bs-toggle="modal">{{ gettext('Página siguiente') }}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="modalVariablesValidacion2" aria-hidden="true" aria-labelledby="modalVariablesValidacion2" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="modalVariablesValidacion2Label">{{ gettext('Variables y Validación II') }}</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body overflow-auto">
+              {{ gettext('Para seleccionar la validación lo único que tenemos que hacer es pulsar el botón que se resalta en la imagen 17. Abajo del botón se muestra la validación escogida.') }}
+              <br>
+              <br>
+              <figure class="text-center">
+                <img src="../static/assets/img/tutorial/validacion.png" alt="Botón validación" title="Imagen 17"  class="img-fluid">
+                <figcaption>{{ gettext('Imagen 17: Botón para seleccionar la validación') }}</figcaption>
+              </figure>
+              {{ gettext('Si le damos al botón, podremos ver los tipos de validación que podremos escoger. Podemos seleccionar entre una validación "Hold-out" y una validación "Cross Validation",
+              donde podremos seleccionar el porcentaje de train o el número bolsas respectivamente.') }}
+
+              <br>
+              <br>
+              <figure class="text-center">
+                <img src="../static/assets/img/tutorial/configuracionValidacion.png" alt="Tipos validación" title="Imagen 18"  class="img-fluid">
+                <figcaption>{{ gettext('Imagen 18: Tipos de validación disponibles') }}</figcaption>
+              </figure>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-primary" data-bs-target="#modalVariablesValidacion" data-bs-toggle="modal">{{ gettext('Página anterior') }}</button>
+            <button class="btn btn-primary" data-bs-target="#modalCrearProyecto" data-bs-toggle="modal">{{ gettext('Página siguiente') }}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+        <div class="modal fade" id="modalCrearProyecto" aria-hidden="true" aria-labelledby="modalCrearProyecto" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="modalCrearProyectoLabel">{{ gettext('Crear proyecto') }}</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body overflow-auto">
+              {{ gettext('Una vez ya hemos rellenado todas las secciones lo último que tenemos que hacer es pulsar sobre el botón "Crear".') }}
+              <br>
+              <br>
+              <figure class="text-center">
+                <img src="../static/assets/img/tutorial/botonCrear.png" alt="Botón creación proyecto" title="Imagen 19"  class="img-fluid">
+                <figcaption>{{ gettext('Imagen 19: Botón para crear el proyecto') }}</figcaption>
+              </figure>
+              {{ gettext('Si no le damos al botón y nos vamos de la vista, no pasa nada porque el proyecto se creará igualmente.') }}
+              <br>
+              <br>
+              {{ gettext('Y cuando le hayamos dado al botón o nos hayamos ido de la vista, podemos ir a la pestaña "Mis Proyectos" donde podremos ver que se ha creado perfectamente el proyecto.') }}
+              <br>
+              <br>
+              <figure class="text-center">
+                <img src="../static/assets/img/tutorial/proyectoCreado.png" alt="Proyecto creado" title="Imagen 20"  class="img-fluid">
+                <figcaption>{{ gettext('Imagen 20: Proyecto creado') }}</figcaption>
+              </figure>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-primary" data-bs-target="#modalVariablesValidacion2" data-bs-toggle="modal">{{ gettext('Página anterior') }}</button>
+            <button class="btn btn-primary" data-bs-target="#" data-bs-toggle="modal">{{ gettext('Fin') }}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+</body>
+</html>
