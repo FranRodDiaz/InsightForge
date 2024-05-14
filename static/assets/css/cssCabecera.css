@@ -1,0 +1,9 @@
+@media (max-width: 992px) { /* 992px es el breakpoint para 'lg' en Bootstrap 5 */
+      .nav-tabs {
+          justify-content: flex-start !important;
+      }
+}
+
+body{
+  background-color: #FBFBFB ;
+}

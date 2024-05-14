@@ -1,0 +1,41 @@
+.node {
+  cursor: pointer;
+}
+
+.node circle {
+}
+
+.node text {
+  font: 10px sans-serif;
+}
+
+.link {
+  fill: none;
+  stroke: rgb(55, 68, 105);
+  stroke-width: 1px;
+}
+
+#tree-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#tree-svg {
+    overflow: visible;
+}
+
+
+#treeRadial-svg {
+    overflow: visible;
+}
+
+
+svg {
+    /* Asegúrate de que el SVG no exceda el ancho de la pantalla */
+    max-width: 100%;
+    height: auto; /* Esto mantendrá la proporción del SVG */
+    /* Si el SVG es más pequeño que el contenedor, esto ayudará a centrarlo */
+    margin: auto;
+}
+

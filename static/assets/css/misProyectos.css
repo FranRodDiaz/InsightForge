@@ -1,0 +1,54 @@
+.tablaEntera {
+  margin-top: 3%;
+}
+
+.iconos {
+  /*margin-right: 3px;*/
+}
+
+.tituloModal {
+  color: black;
+}
+
+.nombreProyectoCarga {
+  color: black;
+}
+
+@media only screen and (max-width: 1200px) {
+  .button-text {
+    display: none !important;
+  }
+}
+
+@media only screen and (max-width: 620px) {
+  .btn-clase-1 {
+    margin-bottom: 10px; /* Añade un margen en la parte inferior de cada botón */
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .btn{
+    margin-bottom: 10px; /* Añade un margen en la parte inferior de cada botón */
+    padding: 0;
+    height: 40px;
+  }
+}
+
+/* Estilos personalizados para la paginación en pantallas pequeñas */
+@media only screen and (max-width: 620px) {
+  .pagination-sm li a {
+    padding: 0.25rem 0.5rem; /* Reduce el padding */
+    margin: 0 2px; /* Reduce el margen entre enlaces */
+    min-width: 20px; /* Establece un ancho mínimo para los enlaces */
+    font-size: 0.875rem; /* Reduce el tamaño del texto si es necesario */
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .pagination-sm li a {
+    padding: 0.25rem 0.4rem; /* Reduce aún más el padding para pantallas más pequeñas */
+    font-size: 0.75rem; /* Reduce aún más el tamaño del texto si es necesario */
+  }
+}
+
+

@@ -1,0 +1,4 @@
+.contenedor-flex {
+    display: flex;
+    justify-content: center;  /* Centrado horizontal */
+}
